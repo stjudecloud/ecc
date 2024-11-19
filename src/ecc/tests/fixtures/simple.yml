@@ -1,4 +1,9 @@
-identifier: ECC-MORPH-000001
-state: adopted
-rfc: https://github.com/stjudecloud/ecc/issues/1
-date: 1970-01-01T00:00:00Z
+- identifier: ECC-MORPH-000001
+  state: adopted
+  rfc: https://github.com/stjudecloud/ecc/issues/1
+  adoption_date: 1970-01-01T00:00:00Z
+- identifier: ECC-MOLEC-000001
+  state: provisional
+  rfc: https://github.com/stjudecloud/ecc/issues/2
+- state: proposed
+  rfc: https://github.com/stjudecloud/ecc/issues/3

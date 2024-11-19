@@ -14,16 +14,19 @@ pub use identifier::Identifier;
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "state", rename_all = "lowercase")]
 pub enum Characteristic {
-    /// An RFC that is currently being proposed.
+    /// A characteristic that is currently being proposed.
     Proposed {
         /// A link to the RFC within which the characteristic is being
         /// discussed.
         rfc: Url,
     },
 
-    /// An RFC that has been provisionally accepted and has entered the settling
-    /// phase of adoption.
+    /// An characteristics that has been accepted in principle and has entered
+    /// the settling phase of adoption.
     Provisional {
+        /// The provisional identifier.
+        identifier: Identifier,
+
         /// A link to the RFC within which the characteristic is being
         /// discussed.
         rfc: Url,
@@ -38,16 +41,34 @@ pub enum Characteristic {
         rfc: Url,
 
         /// The date that the characteristic was adopted.
-        date: DateTime<Utc>,
+        adoption_date: DateTime<Utc>,
     },
 }
 
 impl Characteristic {
-    /// Gets the characteristic's identifier, if one has been assigned.
+    /// Gets the characteristic's identifier (if one has been assigned).
     pub fn identifier(&self) -> Option<&Identifier> {
         match self {
+            Characteristic::Proposed { .. } => None,
+            Characteristic::Provisional { identifier, .. }
+            | Characteristic::Adopted { identifier, .. } => Some(identifier),
+        }
+    }
+
+    /// Gets the URL for the associated RFC.
+    pub fn rfc(&self) -> &Url {
+        match self {
+            Characteristic::Proposed { rfc } => rfc,
+            Characteristic::Provisional { rfc, .. } => rfc,
+            Characteristic::Adopted { rfc, .. } => rfc,
+        }
+    }
+
+    /// Gets the adoption date (if it the charactertistic has been adopted).
+    pub fn adoption_date(&self) -> Option<&DateTime<Utc>> {
+        match self {
             Characteristic::Proposed { .. } | Characteristic::Provisional { .. } => None,
-            Characteristic::Adopted { identifier, .. } => Some(identifier),
+            Characteristic::Adopted { adoption_date, .. } => Some(adoption_date),
         }
     }
 }
@@ -69,14 +90,18 @@ mod tests {
         let char = Characteristic::Proposed { rfc: URL.clone() };
         assert!(char.identifier().is_none());
 
-        let char = Characteristic::Provisional { rfc: URL.clone() };
-        assert!(char.identifier().is_none());
-
         let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
+        let char = Characteristic::Provisional {
+            identifier: identifier.clone(),
+            rfc: URL.clone(),
+        };
+        assert_eq!(char.identifier(), Some(&identifier));
+
+        let identifier = "ECC-MOLEC-000001".parse::<Identifier>().unwrap();
         let char = Characteristic::Adopted {
             identifier: identifier.clone(),
             rfc: URL.clone(),
-            date: Utc::now(),
+            adoption_date: Utc::now(),
         };
         assert_eq!(char.identifier(), Some(&identifier));
     }
