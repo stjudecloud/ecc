@@ -75,15 +75,15 @@ impl Characteristic {
 
 #[cfg(test)]
 mod tests {
-    use std::cell::LazyCell;
     use std::str::FromStr;
+    use std::sync::LazyLock;
 
     use url::Url;
 
     use super::*;
 
-    const URL: LazyCell<Url> =
-        LazyCell::new(|| Url::from_str("https://github.com/stjudecloud/ecc/issues/1").unwrap());
+    static URL: LazyLock<Url> =
+        LazyLock::new(|| Url::from_str("https://github.com/stjudecloud/ecc/issues/1").unwrap());
 
     #[test]
     fn identifier() {

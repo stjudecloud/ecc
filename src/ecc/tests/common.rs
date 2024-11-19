@@ -24,7 +24,6 @@ where
     let search_path = format!("{}.*", path.display());
     let mut files = glob(&search_path)
         .with_context(|| format!("searching for files with glob `{search_path}`"))?
-        .into_iter()
         .collect::<Result<Vec<_>, _>>()
         .context("reading matching files")?;
 
