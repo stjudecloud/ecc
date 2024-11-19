@@ -1,0 +1,34 @@
+[workspace]
+members = ["src/bin", "src/ecc"]
+resolver = "2"
+
+[workspace.package]
+license = "MIT OR Apache-2.0"
+edition = "2021"
+authors = ["The St. Jude Cloud developers <support@stjude.cloud>"]
+homepage = "https://github.com/stjudecloud/ecc"
+repository = "https://github.com/stjudecloud/ecc"
+rust-version = "1.82.0"
+
+[workspace.dependencies]
+anyhow = "1.0.93"
+chrono = { version = "0.4.38", features = ["serde"] }
+clap = { version = "4.5.21", features = ["derive"] }
+glob = "0.3.1"
+serde = { version = "1.0.215", features = ["derive"] }
+serde_yaml = "0.9"
+url = { version = "2.5.3", features = ["serde"] }
+
+[workspace.lints.rust]
+missing_docs = "warn"
+nonstandard-style = "warn"
+rust-2018-idioms = "warn"
+rust-2021-compatibility = "warn"
+rust-2024-compatibility = "warn"
+edition_2024_expr_fragment_specifier = "allow"
+
+[workspace.lints.rustdoc]
+broken_intra_doc_links = "warn"
+
+[workspace.lints.clippy]
+missing_docs_in_private_items = "warn"
