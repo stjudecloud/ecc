@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">
-    The Encyclopedia of Composable Characteristics
+    The Encyclopedia<br />of Composable Characteristics
   </h1>
 </p>
 
