@@ -5,8 +5,10 @@ use serde::Serialize;
 use serde_with::DisplayFromStr;
 use serde_with::serde_as;
 
+pub mod builder;
 pub mod name;
 
+pub use builder::Builder;
 pub use name::Name;
 
 /// A node in the ontology.
@@ -20,11 +22,4 @@ pub struct Node {
     /// The name of the parent node.
     #[serde_as(as = "DisplayFromStr")]
     parent: Name,
-}
-
-impl Node {
-    /// Creates a new node.
-    pub fn new(name: Name, parent: Name) -> Self {
-        Self { name, parent }
-    }
 }
