@@ -5,12 +5,11 @@ use std::num::NonZeroU64;
 use chrono::DateTime;
 use ecc::Characteristic;
 use ecc::Identifier;
-
-mod common;
+use test_infra::read_fixture;
 
 #[test]
 fn parse() {
-    let mut chrs = common::read_fixture("simple").unwrap().into_iter();
+    let mut chrs = read_fixture("simple").unwrap().into_iter();
 
     ////////////////////////////////////////////////////////////////////////////
     // First characteristic

@@ -1,5 +1,5 @@
 [package]
-name = "ecc"
+name = "test-infra"
 version = "0.1.0"
 license.workspace = true
 edition.workspace = true
@@ -9,15 +9,9 @@ repository.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-chrono.workspace = true
-serde.workspace = true
-url.workspace = true
-
-[dev-dependencies]
-test-infra = { path = "../test-infra" }
-
 anyhow.workspace = true
 glob.workspace = true
+serde.workspace = true
 serde_yaml.workspace = true
 
 [lints]

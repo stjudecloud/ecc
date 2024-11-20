@@ -8,7 +8,7 @@ use anyhow::anyhow;
 use glob::glob;
 use serde::Deserialize;
 
-/// Reads a fixture within the integration tests.
+/// Reads an ontology node fixture within the integration tests.
 pub fn read_fixture<D>(fixture: &str) -> anyhow::Result<Vec<D>>
 where
     D: for<'de> Deserialize<'de>,
