@@ -1,12 +1,40 @@
 //! Names for ontology nodes.
 
+use std::collections::HashMap;
 use std::ops::Deref;
+use std::sync::LazyLock;
 
 /// The words that are expected to be lowercase.
-const LOWERCASE_WORDS: &[&str] = &["and", "the", "with"];
+const LOWERCASE_WORDS: &[&str] = &[
+    "and",
+    // The standalone word `like` is included here because there are many
+    // existing references to `-like` (which is always lowercase). For visual
+    // consistency, we will treat even standalone `like` as lowercase.
+    "like", "the", "of", "or", "with",
+];
+
+/// After words are converted to title case, any phrases that are matched with
+/// the keys are replaced with the values of the map. This allows us to do
+/// things like change `Non-hodgkin` to `Non-Hodgkin` easily.
+static TITLE_CASE_REPLACEMENTS: LazyLock<HashMap<&'static str, &'static str>> =
+    LazyLock::new(|| {
+        let mut hm = HashMap::new();
+
+        // A list of names that should always be capitalized.
+        hm.insert("hodgkin", "Hodgkin");
+        hm.insert("barr", "Barr");
+        hm.insert("dorfman", "Dorfman");
+        hm.insert("leydig", "Leydig");
+
+        // Intrachromosomal amplification of chromosome 21 (iAMP21) has a
+        // specific nomenclature and should keep that casing.
+        hm.insert("Iamp21", "iAMP21");
+
+        hm
+    });
 
 /// A string that is validated to only contain ASCII characters.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct AsciiString(String);
 
 impl AsciiString {
@@ -36,20 +64,27 @@ impl AsciiString {
 
     /// Converts the ASCII string to title case.
     pub fn to_title_case(&self) -> Self {
-        let inner = self
-            .0
-            .chars()
-            .enumerate()
-            .map(|(i, c)| {
-                if i == 0 {
-                    c.to_ascii_uppercase()
-                } else {
-                    c.to_ascii_lowercase()
-                }
-            })
-            .collect::<String>();
+        let mut next_letter_uppercase = true;
 
-        Self(inner)
+        let mut chars = Vec::new();
+
+        for c in self.0.chars() {
+            if next_letter_uppercase {
+                chars.push(c.to_ascii_uppercase());
+            } else {
+                chars.push(c.to_ascii_lowercase());
+            }
+
+            next_letter_uppercase = c == '/';
+        }
+
+        let mut result = chars.into_iter().collect::<String>();
+
+        for (k, v) in TITLE_CASE_REPLACEMENTS.iter() {
+            result = result.replace(k, v);
+        }
+
+        Self(result)
     }
 }
 
@@ -62,7 +97,7 @@ impl Deref for AsciiString {
 }
 
 /// The case of a word.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Case {
     /// A lowercase word.
     Lower(AsciiString),
@@ -189,7 +224,7 @@ impl std::fmt::Display for ParseError {
 impl std::error::Error for ParseError {}
 
 /// A node name.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Name {
     /// The inner value.
     inner: String,
@@ -314,5 +349,19 @@ mod tests {
 * found `bAZ` but expected `Baz` because the word is neither in the lowercase list nor is fully \
              uppercase"
         );
+    }
+
+    #[test]
+    fn special_cases() {
+        let err = "Iamp21".parse::<Name>().unwrap_err();
+        assert_eq!(
+            err.to_string(),
+            "some words are incorrectly cased:
+
+* found `Iamp21` but expected `iAMP21` because the word is neither in the lowercase list nor is \
+             fully uppercase"
+        );
+
+        let _ = "iAMP21".parse::<Name>().unwrap();
     }
 }

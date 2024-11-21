@@ -14,6 +14,7 @@ serde_with.workspace = true
 
 [dev-dependencies]
 test-infra = { path = "../test-infra" }
+
 chrono.workspace = true
 
 [lints]

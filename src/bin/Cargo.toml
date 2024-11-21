@@ -9,6 +9,14 @@ repository.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+ontology = { path = "../ontology" }
+
+anyhow.workspace = true
+clap.workspace = true
+convert_case.workspace = true
+csv.workspace = true
+petgraph.workspace = true
+serde_yaml.workspace = true
 
 [lints]
 workspace = true

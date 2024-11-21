@@ -28,18 +28,27 @@ pub struct Builder {
 
     /// The parent node.
     parent: Option<Name>,
+
+    /// The short code.
+    code: Option<String>,
 }
 
 impl Builder {
     /// Sets the name for the node.
-    pub fn name(mut self, value: Name) -> Self {
-        self.name = Some(value);
+    pub fn name(mut self, value: impl Into<Name>) -> Self {
+        self.name = Some(value.into());
         self
     }
 
     /// Sets the parent for the node.
-    pub fn parent(mut self, value: Name) -> Self {
-        self.parent = Some(value);
+    pub fn parent(mut self, value: impl Into<Name>) -> Self {
+        self.parent = Some(value.into());
+        self
+    }
+
+    /// Sets the short code for the node.
+    pub fn code(mut self, value: impl Into<String>) -> Self {
+        self.code = Some(value.into());
         self
     }
 
@@ -47,7 +56,8 @@ impl Builder {
     pub fn try_build(self) -> Result<Node, Error> {
         let name = self.name.ok_or(Error::MissingField("name"))?;
         let parent = self.parent.ok_or(Error::MissingField("parent"))?;
+        let code = self.code.ok_or(Error::MissingField("code"))?;
 
-        Ok(Node { name, parent })
+        Ok(Node { name, parent, code })
     }
 }

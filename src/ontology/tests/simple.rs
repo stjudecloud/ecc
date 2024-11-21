@@ -17,6 +17,7 @@ fn parse() {
                 .unwrap(),
         )
         .parent("B-cell Lymphoblastic Leukemia".parse::<Name>().unwrap())
+        .code("BALLPAX5P80R")
         .try_build()
         .unwrap();
     assert_eq!(first, expected);
