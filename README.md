@@ -46,7 +46,7 @@ cargo doc
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome! Feel free to check
-[issues page](https://github.com/stjudecloud/ecc/isses).
+[issues page](https://github.com/stjudecloud/ecc/issues).
 
 ## 📝 License
 
