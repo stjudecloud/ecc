@@ -85,19 +85,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
-name = "bin"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "convert_case",
- "csv",
- "ontology",
- "petgraph",
- "serde_yaml",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -282,6 +269,19 @@ dependencies = [
  "serde_yaml",
  "test-infra",
  "url",
+]
+
+[[package]]
+name = "ecc-cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "convert_case",
+ "csv",
+ "ontology",
+ "petgraph",
+ "serde_yaml",
 ]
 
 [[package]]
