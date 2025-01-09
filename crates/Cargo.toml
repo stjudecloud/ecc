@@ -1,5 +1,5 @@
 [workspace]
-members = ["src/bin", "src/ecc", "src/ontology", "src/test-infra"]
+members = ["ecc", "ecc-cli", "ontology", "test-infra"]
 resolver = "2"
 
 [workspace.package]
