@@ -1,0 +1,63 @@
+name: Propose a new composable characteristic
+description: Propose the adoption of a new composable characteristic.
+title: "[ECC] Proper ECC Name In Title Case"
+labels: ["D-ecc", "S-draft"]
+assignees:
+- "ecc-review"
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thanks for considering contributing to the Encyclopedia of Composable
+        Characteristics 🎉!
+  - type: markdown
+    attributes:
+      value: >
+        To propose a new composable characteristic, you should fill out this
+        form. The form isn't intended to be completed in one sitting, it's just
+        here to get you started—feel free to submit the form before it's
+        complete and come back to it later (your issue will be marked as a draft
+        until you update the label).
+  - type: checkboxes
+    id: getting-started
+    attributes:
+      label: Getting Started Checklist
+      description: >
+        First, a few items to get you started.
+      options:
+        - label: >
+            I have searched through the GitHub issues with the `K-ecc` tag and
+            ensured that no one has proposed this ECC before (or that it is not
+            already captured in an existing ECC).
+          required: true
+  - type: input
+    id: name
+    attributes:
+      label: Proposed Characteristic Name
+      description: Enter a proposed, title case name for the composable characteristic.
+      placeholder: Microvascular Proliferation
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Proposed Characteristic Category
+      description: >
+        Composable characteristics are either (a) molecular features or (b)
+        morphological features. Please indicate which category this
+        characteristic falls into, or select "Other" and let us know in the
+        issue if you think a new characteristic category should be considered.
+      options:
+        - Molecular
+        - Morphological
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Detailed Description
+      description: Please enter a description for the composable characteristic.
+      value: >
+        Foo bar baz quux.
+    validations:
+      required: true
