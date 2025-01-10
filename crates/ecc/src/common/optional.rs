@@ -18,6 +18,9 @@ use crate::rfc;
 /// where all of the information might not yet be filled in.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OptionalCommon {
+    /// The name of the characteristic.
+    pub name: Option<String>,
+
     /// A link to the RFC within which the characteristic has been and is being
     /// discussed.
     ///
@@ -27,6 +30,11 @@ pub struct OptionalCommon {
 }
 
 impl OptionalCommon {
+    /// Gets the name.
+    pub fn name(&self) -> Option<&str> {
+        self.name.as_deref()
+    }
+
     /// Gets the RFC link.
     pub fn rfc(&self) -> Option<&rfc::Link> {
         self.rfc.as_ref()
@@ -40,7 +48,8 @@ impl OptionalCommon {
     #[allow(dead_code)]
     pub fn into_common(self) -> Common {
         Common {
-            rfc: self.rfc.expect("`common` to be present"),
+            name: self.name.expect("`name` to be present"),
+            rfc: self.rfc.expect("`rfc` to be present"),
         }
     }
 }

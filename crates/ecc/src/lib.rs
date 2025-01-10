@@ -71,6 +71,16 @@ impl Characteristic {
         }
     }
 
+    /// Gets the name.
+    pub fn name(&self) -> Option<&str> {
+        match self {
+            Characteristic::Draft { common } => common.name(),
+            Characteristic::Proposed { common } => Some(common.name()),
+            Characteristic::Provisional { common, .. } => Some(common.name()),
+            Characteristic::Adopted { common, .. } => Some(common.name()),
+        }
+    }
+
     /// Gets the URL for the associated RFC.
     pub fn rfc(&self) -> Option<&Link> {
         match self {
@@ -112,10 +122,12 @@ mod tests {
 
         let draft = Characteristic::Draft {
             common: OptionalCommon {
+                name: Some(String::from("A Characteristic Name")),
                 rfc: Some(RFC_LINK.clone()),
             },
         };
         assert!(draft.identifier().is_none());
+        assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             draft.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
@@ -128,10 +140,12 @@ mod tests {
 
         let proposed = Characteristic::Proposed {
             common: Common {
+                name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
             },
         };
         assert!(proposed.identifier().is_none());
+        assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             proposed.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
@@ -146,10 +160,12 @@ mod tests {
         let provisional = Characteristic::Provisional {
             identifier: identifier.clone(),
             common: Common {
+                name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
             },
         };
         assert!(provisional.identifier().is_some());
+        assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             provisional.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
@@ -164,11 +180,13 @@ mod tests {
         let adopted = Characteristic::Adopted {
             identifier: identifier.clone(),
             common: Common {
+                name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
             },
             adoption_date: Utc::now(),
         };
         assert_eq!(adopted.identifier(), Some(&identifier));
+        assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             adopted.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"

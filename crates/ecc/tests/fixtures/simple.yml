@@ -1,9 +1,12 @@
 - identifier: ECC-MORPH-000001
+  name: Foo Bar
   state: adopted
   rfc: https://github.com/stjudecloud/ecc/issues/1
   adoption_date: 1970-01-01T00:00:00Z
 - identifier: ECC-MOLEC-000001
+  name: Foo Baz
   state: provisional
   rfc: https://github.com/stjudecloud/ecc/issues/2
 - state: proposed
+  name: Foo Quux
   rfc: https://github.com/stjudecloud/ecc/issues/3
