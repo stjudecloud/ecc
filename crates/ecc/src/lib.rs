@@ -17,7 +17,14 @@ pub use rfc::Link;
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "state", rename_all = "lowercase")]
 pub enum Characteristic {
-    /// A characteristic that is currently being proposed.
+    /// A characteristic that is currently being drafted.
+    Draft {
+        /// The common set of elements for any characteristic.
+        #[serde(flatten)]
+        common: Common,
+    },
+
+    /// A characteristic that is currently being proposed to be adopted.
     Proposed {
         /// The common set of elements for any characteristic.
         #[serde(flatten)]
@@ -53,7 +60,7 @@ impl Characteristic {
     /// Gets the characteristic's identifier (if one has been assigned).
     pub fn identifier(&self) -> Option<&Identifier> {
         match self {
-            Characteristic::Proposed { .. } => None,
+            Characteristic::Draft { .. } | Characteristic::Proposed { .. } => None,
             Characteristic::Provisional { identifier, .. }
             | Characteristic::Adopted { identifier, .. } => Some(identifier),
         }
@@ -62,6 +69,7 @@ impl Characteristic {
     /// Gets the URL for the associated RFC.
     pub fn rfc(&self) -> &Link {
         match self {
+            Characteristic::Draft { common } => common.rfc(),
             Characteristic::Proposed { common } => common.rfc(),
             Characteristic::Provisional { common, .. } => common.rfc(),
             Characteristic::Adopted { common, .. } => common.rfc(),
@@ -71,7 +79,9 @@ impl Characteristic {
     /// Gets the adoption date (if it the charactertistic has been adopted).
     pub fn adoption_date(&self) -> Option<&DateTime<Utc>> {
         match self {
-            Characteristic::Proposed { .. } | Characteristic::Provisional { .. } => None,
+            Characteristic::Draft { .. }
+            | Characteristic::Proposed { .. }
+            | Characteristic::Provisional { .. } => None,
             Characteristic::Adopted { adoption_date, .. } => Some(adoption_date),
         }
     }
@@ -90,31 +100,74 @@ mod tests {
     });
 
     #[test]
-    fn identifier() {
-        let char = Characteristic::Proposed {
+    fn features() {
+        //=======//
+        // Draft //
+        //=======//
+
+        let draft = Characteristic::Draft {
             common: Common {
                 rfc: RFC_LINK.clone(),
             },
         };
-        assert!(char.identifier().is_none());
+        assert!(draft.identifier().is_none());
+        assert_eq!(
+            draft.rfc().as_str(),
+            "https://github.com/stjudecloud/ecc/issues/1"
+        );
+        assert!(draft.adoption_date().is_none());
+
+        //==========//
+        // Proposed //
+        //==========//
+
+        let proposed = Characteristic::Proposed {
+            common: Common {
+                rfc: RFC_LINK.clone(),
+            },
+        };
+        assert!(proposed.identifier().is_none());
+        assert_eq!(
+            proposed.rfc().as_str(),
+            "https://github.com/stjudecloud/ecc/issues/1"
+        );
+        assert!(proposed.adoption_date().is_none());
+
+        //=============//
+        // Provisional //
+        //=============//
 
         let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
-        let char = Characteristic::Provisional {
+        let provisional = Characteristic::Provisional {
             identifier: identifier.clone(),
             common: Common {
                 rfc: RFC_LINK.clone(),
             },
         };
-        assert_eq!(char.identifier(), Some(&identifier));
+        assert!(provisional.identifier().is_some());
+        assert_eq!(
+            provisional.rfc().as_str(),
+            "https://github.com/stjudecloud/ecc/issues/1"
+        );
+        assert!(provisional.adoption_date().is_none());
+
+        //=========//
+        // Adopted //
+        //=========//
 
         let identifier = "ECC-MOLEC-000001".parse::<Identifier>().unwrap();
-        let char = Characteristic::Adopted {
+        let adopted = Characteristic::Adopted {
             identifier: identifier.clone(),
             common: Common {
                 rfc: RFC_LINK.clone(),
             },
             adoption_date: Utc::now(),
         };
-        assert_eq!(char.identifier(), Some(&identifier));
+        assert_eq!(adopted.identifier(), Some(&identifier));
+        assert_eq!(
+            adopted.rfc().as_str(),
+            "https://github.com/stjudecloud/ecc/issues/1"
+        );
+        assert!(adopted.adoption_date().is_some());
     }
 }
