@@ -1,11 +1,11 @@
-//! Ontology-related facilities.
+//! Composable characteristic-related facilities.
 
 use clap::Parser;
 use clap::Subcommand;
 
-mod init;
+mod check;
 
-/// Build and maintain ontologies related to the ECC.
+/// Build and maintain the composable characteristics tree.
 #[derive(Parser)]
 pub struct Args {
     /// The command to run.
@@ -16,13 +16,13 @@ pub struct Args {
 /// The command to run.
 #[derive(Subcommand)]
 pub enum Command {
-    /// Initializes an ontology directory from an existing map.
-    Init(init::Args),
+    /// Checks the composable characteristic tree is valid.
+    Check(check::Args),
 }
 
 /// The main method.
 pub fn main(args: Args) -> anyhow::Result<()> {
     match args.command {
-        Command::Init(args) => init::main(args),
+        Command::Check(args) => check::main(args),
     }
 }
