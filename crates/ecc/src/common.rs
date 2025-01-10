@@ -1,13 +1,16 @@
 //! Common features for a composable characteristics.
 
+use nonempty::NonEmpty;
 use serde::Deserialize;
 use serde::Serialize;
 
 use crate::rfc;
 
 mod optional;
+mod reference;
 
 pub use optional::OptionalCommon;
+pub use reference::Reference;
 
 /// Common features for composable characteristics in any stage.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -21,16 +24,7 @@ pub struct Common {
     /// Any questions regarding the characteristic after adoption should also be
     /// organized here.
     pub rfc: rfc::Link,
-}
 
-impl Common {
-    /// Gets the name.
-    pub fn name(&self) -> &str {
-        &self.name
-    }
-
-    /// Gets the RFC link.
-    pub fn rfc(&self) -> &rfc::Link {
-        &self.rfc
-    }
+    /// An optional list of publications.
+    pub references: Option<NonEmpty<Reference>>,
 }

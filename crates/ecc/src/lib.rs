@@ -14,9 +14,11 @@ use common::OptionalCommon;
 pub use identifier::Identifier;
 pub use rfc::Link;
 
+use crate::common::Reference;
+
 /// A composable characteristic.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(tag = "state", rename_all = "lowercase")]
+#[serde(tag = "state", rename_all = "lowercase", deny_unknown_fields)]
 pub enum Characteristic {
     /// A characteristic that is currently being drafted.
     Draft {
@@ -74,20 +76,42 @@ impl Characteristic {
     /// Gets the name.
     pub fn name(&self) -> Option<&str> {
         match self {
-            Characteristic::Draft { common } => common.name(),
-            Characteristic::Proposed { common } => Some(common.name()),
-            Characteristic::Provisional { common, .. } => Some(common.name()),
-            Characteristic::Adopted { common, .. } => Some(common.name()),
+            Characteristic::Draft { common } => common.name.as_deref(),
+            Characteristic::Proposed { common } => Some(&common.name),
+            Characteristic::Provisional { common, .. } => Some(&common.name),
+            Characteristic::Adopted { common, .. } => Some(&common.name),
         }
     }
 
     /// Gets the URL for the associated RFC.
     pub fn rfc(&self) -> Option<&Link> {
         match self {
-            Characteristic::Draft { common } => common.rfc(),
-            Characteristic::Proposed { common } => Some(common.rfc()),
-            Characteristic::Provisional { common, .. } => Some(common.rfc()),
-            Characteristic::Adopted { common, .. } => Some(common.rfc()),
+            Characteristic::Draft { common } => common.rfc.as_ref(),
+            Characteristic::Proposed { common } => Some(&common.rfc),
+            Characteristic::Provisional { common, .. } => Some(&common.rfc),
+            Characteristic::Adopted { common, .. } => Some(&common.rfc),
+        }
+    }
+
+    /// Gets the references.
+    pub fn references(&self) -> Option<impl Iterator<Item = &Reference>> {
+        match self {
+            Characteristic::Draft { common } => common
+                .references
+                .as_ref()
+                .map(|publications| publications.iter()),
+            Characteristic::Proposed { common } => common
+                .references
+                .as_ref()
+                .map(|publications| publications.iter()),
+            Characteristic::Provisional { common, .. } => common
+                .references
+                .as_ref()
+                .map(|publications| publications.iter()),
+            Characteristic::Adopted { common, .. } => common
+                .references
+                .as_ref()
+                .map(|publications| publications.iter()),
         }
     }
 
@@ -106,7 +130,11 @@ impl Characteristic {
 mod tests {
     use std::sync::LazyLock;
 
+    use nonempty::NonEmpty;
+    use url::Url;
+
     use super::*;
+    use crate::common::Reference;
 
     static RFC_LINK: LazyLock<Link> = LazyLock::new(|| {
         "https://github.com/stjudecloud/ecc/issues/1"
@@ -124,6 +152,12 @@ mod tests {
             common: OptionalCommon {
                 name: Some(String::from("A Characteristic Name")),
                 rfc: Some(RFC_LINK.clone()),
+                references: Some(NonEmpty::new(Reference::Manuscript {
+                    title: String::from("The Discovery of Foo Bar"),
+                    url: "https://nature.org/the-discovery-of-foo-bar"
+                        .parse::<Url>()
+                        .unwrap(),
+                })),
             },
         };
         assert!(draft.identifier().is_none());
@@ -132,6 +166,7 @@ mod tests {
             draft.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.references().unwrap().count(), 1);
         assert!(draft.adoption_date().is_none());
 
         //==========//
@@ -142,6 +177,12 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                references: Some(NonEmpty::new(Reference::Manuscript {
+                    title: String::from("The Discovery of Foo Bar"),
+                    url: "https://nature.org/the-discovery-of-foo-bar"
+                        .parse::<Url>()
+                        .unwrap(),
+                })),
             },
         };
         assert!(proposed.identifier().is_none());
@@ -150,6 +191,7 @@ mod tests {
             proposed.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.references().unwrap().count(), 1);
         assert!(proposed.adoption_date().is_none());
 
         //=============//
@@ -162,6 +204,12 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                references: Some(NonEmpty::new(Reference::Manuscript {
+                    title: String::from("The Discovery of Foo Bar"),
+                    url: "https://nature.org/the-discovery-of-foo-bar"
+                        .parse::<Url>()
+                        .unwrap(),
+                })),
             },
         };
         assert!(provisional.identifier().is_some());
@@ -170,6 +218,7 @@ mod tests {
             provisional.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.references().unwrap().count(), 1);
         assert!(provisional.adoption_date().is_none());
 
         //=========//
@@ -182,6 +231,12 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                references: Some(NonEmpty::new(Reference::Manuscript {
+                    title: String::from("The Discovery of Foo Bar"),
+                    url: "https://nature.org/the-discovery-of-foo-bar"
+                        .parse::<Url>()
+                        .unwrap(),
+                })),
             },
             adoption_date: Utc::now(),
         };
@@ -191,6 +246,7 @@ mod tests {
             adopted.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.references().unwrap().count(), 1);
         assert!(adopted.adoption_date().is_some());
     }
 }

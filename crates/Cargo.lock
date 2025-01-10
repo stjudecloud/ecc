@@ -283,6 +283,7 @@ dependencies = [
  "anyhow",
  "chrono",
  "glob",
+ "nonempty",
  "regex",
  "serde",
  "serde_with",
@@ -615,6 +616,15 @@ name = "memchr"
 version = "2.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
+
+[[package]]
+name = "nonempty"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "549e471b99ccaf2f89101bec68f4d244457d5a95a9c3d0672e9564124397741d"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "nu-ansi-term"

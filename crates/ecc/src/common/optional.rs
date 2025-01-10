@@ -5,10 +5,12 @@
 //! `draft` phase so as to not upset the deserializer when information is
 //! missing.
 
+use nonempty::NonEmpty;
 use serde::Deserialize;
 use serde::Serialize;
 
 use crate::common::Common;
+use crate::common::Reference;
 use crate::rfc;
 
 /// An "option common" feature set.
@@ -27,19 +29,12 @@ pub struct OptionalCommon {
     /// Any questions regarding the characteristic after adoption should also be
     /// organized here.
     pub rfc: Option<rfc::Link>,
+
+    /// An optional list of publications.
+    pub references: Option<NonEmpty<Reference>>,
 }
 
 impl OptionalCommon {
-    /// Gets the name.
-    pub fn name(&self) -> Option<&str> {
-        self.name.as_deref()
-    }
-
-    /// Gets the RFC link.
-    pub fn rfc(&self) -> Option<&rfc::Link> {
-        self.rfc.as_ref()
-    }
-
     /// Consumes `self` and returns a [`Common`].
     ///
     /// This method largely exists to statically verify that every field in
@@ -50,6 +45,7 @@ impl OptionalCommon {
         Common {
             name: self.name.expect("`name` to be present"),
             rfc: self.rfc.expect("`rfc` to be present"),
+            references: self.references,
         }
     }
 }
