@@ -10,6 +10,7 @@ mod identifier;
 pub mod rfc;
 
 use common::Common;
+use common::OptionalCommon;
 pub use identifier::Identifier;
 pub use rfc::Link;
 
@@ -20,8 +21,12 @@ pub enum Characteristic {
     /// A characteristic that is currently being drafted.
     Draft {
         /// The common set of elements for any characteristic.
+        ///
+        /// In this case, the set of features is captured by an
+        /// [`OptionalCommon`], indicating that fields may or may not be present
+        /// in draft phase.
         #[serde(flatten)]
-        common: Common,
+        common: OptionalCommon,
     },
 
     /// A characteristic that is currently being proposed to be adopted.
@@ -67,12 +72,12 @@ impl Characteristic {
     }
 
     /// Gets the URL for the associated RFC.
-    pub fn rfc(&self) -> &Link {
+    pub fn rfc(&self) -> Option<&Link> {
         match self {
             Characteristic::Draft { common } => common.rfc(),
-            Characteristic::Proposed { common } => common.rfc(),
-            Characteristic::Provisional { common, .. } => common.rfc(),
-            Characteristic::Adopted { common, .. } => common.rfc(),
+            Characteristic::Proposed { common } => Some(common.rfc()),
+            Characteristic::Provisional { common, .. } => Some(common.rfc()),
+            Characteristic::Adopted { common, .. } => Some(common.rfc()),
         }
     }
 
@@ -106,13 +111,13 @@ mod tests {
         //=======//
 
         let draft = Characteristic::Draft {
-            common: Common {
-                rfc: RFC_LINK.clone(),
+            common: OptionalCommon {
+                rfc: Some(RFC_LINK.clone()),
             },
         };
         assert!(draft.identifier().is_none());
         assert_eq!(
-            draft.rfc().as_str(),
+            draft.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
         assert!(draft.adoption_date().is_none());
@@ -128,7 +133,7 @@ mod tests {
         };
         assert!(proposed.identifier().is_none());
         assert_eq!(
-            proposed.rfc().as_str(),
+            proposed.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
         assert!(proposed.adoption_date().is_none());
@@ -146,7 +151,7 @@ mod tests {
         };
         assert!(provisional.identifier().is_some());
         assert_eq!(
-            provisional.rfc().as_str(),
+            provisional.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
         assert!(provisional.adoption_date().is_none());
@@ -165,7 +170,7 @@ mod tests {
         };
         assert_eq!(adopted.identifier(), Some(&identifier));
         assert_eq!(
-            adopted.rfc().as_str(),
+            adopted.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
         assert!(adopted.adoption_date().is_some());

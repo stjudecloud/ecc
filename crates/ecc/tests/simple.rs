@@ -24,7 +24,7 @@ fn parse() {
     assert_eq!(actual.to_string(), "ECC-MORPH-000001");
 
     assert_eq!(
-        first.rfc().as_str(),
+        first.rfc().unwrap().as_str(),
         "https://github.com/stjudecloud/ecc/issues/1"
     );
 
@@ -46,7 +46,7 @@ fn parse() {
     assert_eq!(actual.to_string(), "ECC-MOLEC-000001");
 
     assert_eq!(
-        second.rfc().as_str(),
+        second.rfc().unwrap().as_str(),
         "https://github.com/stjudecloud/ecc/issues/2"
     );
 
@@ -58,7 +58,7 @@ fn parse() {
     assert!(matches!(third, Characteristic::Proposed { .. }));
 
     assert_eq!(
-        third.rfc().as_str(),
+        third.rfc().unwrap().as_str(),
         "https://github.com/stjudecloud/ecc/issues/3"
     );
 }

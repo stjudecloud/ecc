@@ -5,6 +5,10 @@ use serde::Serialize;
 
 use crate::rfc;
 
+mod optional;
+
+pub use optional::OptionalCommon;
+
 /// Common features for composable characteristics in any stage.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Common {
