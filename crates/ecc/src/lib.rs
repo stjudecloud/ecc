@@ -4,11 +4,12 @@ use chrono::DateTime;
 use chrono::Utc;
 use serde::Deserialize;
 use serde::Serialize;
-use url::Url;
 
 mod identifier;
+pub mod rfc;
 
 pub use identifier::Identifier;
+pub use rfc::Link;
 
 /// A composable characteristic.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -18,7 +19,7 @@ pub enum Characteristic {
     Proposed {
         /// A link to the RFC within which the characteristic is being
         /// discussed.
-        rfc: Url,
+        rfc: rfc::Link,
     },
 
     /// An characteristics that has been accepted in principle and has entered
@@ -29,7 +30,7 @@ pub enum Characteristic {
 
         /// A link to the RFC within which the characteristic is being
         /// discussed.
-        rfc: Url,
+        rfc: rfc::Link,
     },
 
     /// A characteristic that has been adopted.
@@ -38,7 +39,7 @@ pub enum Characteristic {
         identifier: Identifier,
 
         /// A link to the RFC within which the characteristic was adopted.
-        rfc: Url,
+        rfc: rfc::Link,
 
         /// The date that the characteristic was adopted.
         adoption_date: DateTime<Utc>,
@@ -56,7 +57,7 @@ impl Characteristic {
     }
 
     /// Gets the URL for the associated RFC.
-    pub fn rfc(&self) -> &Url {
+    pub fn rfc(&self) -> &Link {
         match self {
             Characteristic::Proposed { rfc } => rfc,
             Characteristic::Provisional { rfc, .. } => rfc,
@@ -75,32 +76,34 @@ impl Characteristic {
 
 #[cfg(test)]
 mod tests {
-    use std::str::FromStr;
     use std::sync::LazyLock;
-
-    use url::Url;
 
     use super::*;
 
-    static URL: LazyLock<Url> =
-        LazyLock::new(|| Url::from_str("https://github.com/stjudecloud/ecc/issues/1").unwrap());
+    static RFC_LINK: LazyLock<Link> = LazyLock::new(|| {
+        "https://github.com/stjudecloud/ecc/issues/1"
+            .parse::<Link>()
+            .unwrap()
+    });
 
     #[test]
     fn identifier() {
-        let char = Characteristic::Proposed { rfc: URL.clone() };
+        let char = Characteristic::Proposed {
+            rfc: RFC_LINK.clone(),
+        };
         assert!(char.identifier().is_none());
 
         let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
         let char = Characteristic::Provisional {
             identifier: identifier.clone(),
-            rfc: URL.clone(),
+            rfc: RFC_LINK.clone(),
         };
         assert_eq!(char.identifier(), Some(&identifier));
 
         let identifier = "ECC-MOLEC-000001".parse::<Identifier>().unwrap();
         let char = Characteristic::Adopted {
             identifier: identifier.clone(),
-            rfc: URL.clone(),
+            rfc: RFC_LINK.clone(),
             adoption_date: Utc::now(),
         };
         assert_eq!(char.identifier(), Some(&identifier));
