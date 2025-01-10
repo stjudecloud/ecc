@@ -1,12 +1,21 @@
 - identifier: ECC-MORPH-000001
-  name: Foo Bar
   state: adopted
+  name: Foo Bar
   rfc: https://github.com/stjudecloud/ecc/issues/1
+  values:
+    kind: binary
   adoption_date: 1970-01-01T00:00:00Z
 - identifier: ECC-MOLEC-000001
-  name: Foo Baz
   state: provisional
+  name: Foo Baz
   rfc: https://github.com/stjudecloud/ecc/issues/2
+  values:
+    kind: categorical
+    options: [foo, bar, baz, quux]
 - state: proposed
   name: Foo Quux
   rfc: https://github.com/stjudecloud/ecc/issues/3
+  values:
+    kind: numerical
+    type: float
+    units: "TPM"

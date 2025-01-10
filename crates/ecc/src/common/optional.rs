@@ -10,6 +10,7 @@ use serde::Deserialize;
 use serde::Serialize;
 
 use crate::common::Common;
+use crate::common::Kind;
 use crate::common::Reference;
 use crate::rfc;
 
@@ -18,7 +19,7 @@ use crate::rfc;
 /// This represents a [`Common`] where all of the fields are optional. This
 /// feature set should only be relevant for characteristics in the `draft` phase
 /// where all of the information might not yet be filled in.
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OptionalCommon {
     /// The name of the characteristic.
     pub name: Option<String>,
@@ -29,6 +30,9 @@ pub struct OptionalCommon {
     /// Any questions regarding the characteristic after adoption should also be
     /// organized here.
     pub rfc: Option<rfc::Link>,
+
+    /// The permissible values that the characteristic takes.
+    pub values: Option<Kind>,
 
     /// An optional list of publications.
     pub references: Option<NonEmpty<Reference>>,
@@ -45,6 +49,7 @@ impl OptionalCommon {
         Common {
             name: self.name.expect("`name` to be present"),
             rfc: self.rfc.expect("`rfc` to be present"),
+            values: self.values.expect("`values` to be present"),
             references: self.references,
         }
     }

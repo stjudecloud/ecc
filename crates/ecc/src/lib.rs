@@ -14,10 +14,11 @@ use common::OptionalCommon;
 pub use identifier::Identifier;
 pub use rfc::Link;
 
+use crate::common::Kind;
 use crate::common::Reference;
 
 /// A composable characteristic.
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "state", rename_all = "lowercase", deny_unknown_fields)]
 pub enum Characteristic {
     /// A characteristic that is currently being drafted.
@@ -77,9 +78,9 @@ impl Characteristic {
     pub fn name(&self) -> Option<&str> {
         match self {
             Characteristic::Draft { common } => common.name.as_deref(),
-            Characteristic::Proposed { common } => Some(&common.name),
-            Characteristic::Provisional { common, .. } => Some(&common.name),
-            Characteristic::Adopted { common, .. } => Some(&common.name),
+            Characteristic::Proposed { common }
+            | Characteristic::Provisional { common, .. }
+            | Characteristic::Adopted { common, .. } => Some(&common.name),
         }
     }
 
@@ -87,9 +88,19 @@ impl Characteristic {
     pub fn rfc(&self) -> Option<&Link> {
         match self {
             Characteristic::Draft { common } => common.rfc.as_ref(),
-            Characteristic::Proposed { common } => Some(&common.rfc),
-            Characteristic::Provisional { common, .. } => Some(&common.rfc),
-            Characteristic::Adopted { common, .. } => Some(&common.rfc),
+            Characteristic::Proposed { common }
+            | Characteristic::Provisional { common, .. }
+            | Characteristic::Adopted { common, .. } => Some(&common.rfc),
+        }
+    }
+
+    /// Gets the permissible values.
+    pub fn values(&self) -> Option<&Kind> {
+        match self {
+            Characteristic::Draft { common } => common.values.as_ref(),
+            Characteristic::Proposed { common }
+            | Characteristic::Provisional { common, .. }
+            | Characteristic::Adopted { common, .. } => Some(&common.values),
         }
     }
 
@@ -134,6 +145,7 @@ mod tests {
     use url::Url;
 
     use super::*;
+    use crate::common::Kind;
     use crate::common::Reference;
 
     static RFC_LINK: LazyLock<Link> = LazyLock::new(|| {
@@ -152,6 +164,7 @@ mod tests {
             common: OptionalCommon {
                 name: Some(String::from("A Characteristic Name")),
                 rfc: Some(RFC_LINK.clone()),
+                values: Some(Kind::Binary),
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
                     url: "https://nature.org/the-discovery-of-foo-bar"
@@ -166,6 +179,7 @@ mod tests {
             draft.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.values().unwrap(), &Kind::Binary);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(draft.adoption_date().is_none());
 
@@ -177,6 +191,7 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                values: Kind::Binary,
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
                     url: "https://nature.org/the-discovery-of-foo-bar"
@@ -191,6 +206,7 @@ mod tests {
             proposed.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.values().unwrap(), &Kind::Binary);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(proposed.adoption_date().is_none());
 
@@ -204,6 +220,7 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                values: Kind::Binary,
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
                     url: "https://nature.org/the-discovery-of-foo-bar"
@@ -218,6 +235,7 @@ mod tests {
             provisional.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.values().unwrap(), &Kind::Binary);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(provisional.adoption_date().is_none());
 
@@ -231,6 +249,7 @@ mod tests {
             common: Common {
                 name: String::from("A Characteristic Name"),
                 rfc: RFC_LINK.clone(),
+                values: Kind::Binary,
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
                     url: "https://nature.org/the-discovery-of-foo-bar"
@@ -246,6 +265,7 @@ mod tests {
             adopted.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
+        assert_eq!(draft.values().unwrap(), &Kind::Binary);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(adopted.adoption_date().is_some());
     }
