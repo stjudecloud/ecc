@@ -5,9 +5,11 @@ use chrono::Utc;
 use serde::Deserialize;
 use serde::Serialize;
 
+mod common;
 mod identifier;
 pub mod rfc;
 
+use common::Common;
 pub use identifier::Identifier;
 pub use rfc::Link;
 
@@ -17,9 +19,9 @@ pub use rfc::Link;
 pub enum Characteristic {
     /// A characteristic that is currently being proposed.
     Proposed {
-        /// A link to the RFC within which the characteristic is being
-        /// discussed.
-        rfc: rfc::Link,
+        /// The common set of elements for any characteristic.
+        #[serde(flatten)]
+        common: Common,
     },
 
     /// An characteristics that has been accepted in principle and has entered
@@ -28,9 +30,9 @@ pub enum Characteristic {
         /// The provisional identifier.
         identifier: Identifier,
 
-        /// A link to the RFC within which the characteristic is being
-        /// discussed.
-        rfc: rfc::Link,
+        /// The common set of elements for any characteristic.
+        #[serde(flatten)]
+        common: Common,
     },
 
     /// A characteristic that has been adopted.
@@ -38,8 +40,9 @@ pub enum Characteristic {
         /// The identifier.
         identifier: Identifier,
 
-        /// A link to the RFC within which the characteristic was adopted.
-        rfc: rfc::Link,
+        /// The common set of elements for any characteristic.
+        #[serde(flatten)]
+        common: Common,
 
         /// The date that the characteristic was adopted.
         adoption_date: DateTime<Utc>,
@@ -59,9 +62,9 @@ impl Characteristic {
     /// Gets the URL for the associated RFC.
     pub fn rfc(&self) -> &Link {
         match self {
-            Characteristic::Proposed { rfc } => rfc,
-            Characteristic::Provisional { rfc, .. } => rfc,
-            Characteristic::Adopted { rfc, .. } => rfc,
+            Characteristic::Proposed { common } => common.rfc(),
+            Characteristic::Provisional { common, .. } => common.rfc(),
+            Characteristic::Adopted { common, .. } => common.rfc(),
         }
     }
 
@@ -89,21 +92,27 @@ mod tests {
     #[test]
     fn identifier() {
         let char = Characteristic::Proposed {
-            rfc: RFC_LINK.clone(),
+            common: Common {
+                rfc: RFC_LINK.clone(),
+            },
         };
         assert!(char.identifier().is_none());
 
         let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
         let char = Characteristic::Provisional {
             identifier: identifier.clone(),
-            rfc: RFC_LINK.clone(),
+            common: Common {
+                rfc: RFC_LINK.clone(),
+            },
         };
         assert_eq!(char.identifier(), Some(&identifier));
 
         let identifier = "ECC-MOLEC-000001".parse::<Identifier>().unwrap();
         let char = Characteristic::Adopted {
             identifier: identifier.clone(),
-            rfc: RFC_LINK.clone(),
+            common: Common {
+                rfc: RFC_LINK.clone(),
+            },
             adoption_date: Utc::now(),
         };
         assert_eq!(char.identifier(), Some(&identifier));
