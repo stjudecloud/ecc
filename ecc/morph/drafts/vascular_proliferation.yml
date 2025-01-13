@@ -1,0 +1,10 @@
+state: proposed
+name: Vascular Proliferation
+rfc: https://github.com/stjudecloud/ecc/issues/3
+values:
+  kind: categorical
+  options: [foo, bar, baz, quux]
+references:
+- kind: manuscript
+  title: The role of vascular proliferation in the growth of brain tumors
+  url: https://pubmed.ncbi.nlm.nih.gov/975695/
