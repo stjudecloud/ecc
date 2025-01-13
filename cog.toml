@@ -1,0 +1,12 @@
+[commit_types]
+# Keep the default definition for these types.
+# `chore`, `ci`, `docs`, `feat`, `fix`, `revert`, `test`
+
+# Custom types that we want to support.
+ecc = { changelog_title = "Characteristics" }
+revise = { changelog_title = "Revisions" }
+
+# Disable these feature types.
+build = {}
+perf = {}
+style = {}
