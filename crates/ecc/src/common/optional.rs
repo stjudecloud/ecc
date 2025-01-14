@@ -9,6 +9,7 @@ use nonempty::NonEmpty;
 use serde::Deserialize;
 use serde::Serialize;
 
+use crate::Identifier;
 use crate::common::Common;
 use crate::common::Kind;
 use crate::common::Reference;
@@ -24,12 +25,18 @@ pub struct OptionalCommon {
     /// The name of the characteristic.
     pub name: Option<String>,
 
+    /// The provisional identifier.
+    pub identifier: Option<Identifier>,
+
     /// A link to the RFC within which the characteristic has been and is being
     /// discussed.
     ///
     /// Any questions regarding the characteristic after adoption should also be
     /// organized here.
     pub rfc: Option<rfc::Link>,
+
+    /// A description.
+    pub description: Option<String>,
 
     /// The permissible values that the characteristic takes.
     pub values: Option<Kind>,
@@ -48,7 +55,9 @@ impl OptionalCommon {
     pub fn into_common(self) -> Common {
         Common {
             name: self.name.expect("`name` to be present"),
+            identifier: self.identifier.expect("`identifier` to be present"),
             rfc: self.rfc.expect("`rfc` to be present"),
+            description: self.description.expect("`description` to be present"),
             values: self.values.expect("`values` to be present"),
             references: self.references,
         }

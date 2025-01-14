@@ -4,15 +4,16 @@ use nonempty::NonEmpty;
 use serde::Deserialize;
 use serde::Serialize;
 
+use crate::Identifier;
+use crate::common::value::Kind;
 use crate::rfc;
 
 mod optional;
 mod reference;
-mod value;
+pub mod value;
 
 pub use optional::OptionalCommon;
 pub use reference::Reference;
-pub use value::Kind;
 
 /// Common features for composable characteristics in any stage.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -20,11 +21,17 @@ pub struct Common {
     /// The name.
     pub name: String,
 
+    /// The provisional identifier.
+    pub identifier: Identifier,
+
     /// A link to the RFC for the characteristic.
     ///
     /// All discussion of the characteristic, whether in the draft phase or
     /// questions after adoption, should occur within this RFC link.
     pub rfc: rfc::Link,
+
+    /// A description.
+    pub description: String,
 
     /// The permissible values that the characteristic takes.
     pub values: Kind,

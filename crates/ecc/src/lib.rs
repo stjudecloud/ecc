@@ -6,16 +6,18 @@ use serde::Deserialize;
 use serde::Serialize;
 
 mod common;
+pub mod field;
 mod identifier;
 pub mod rfc;
+pub mod text;
 
 use common::Common;
 use common::OptionalCommon;
 pub use identifier::Identifier;
 pub use rfc::Link;
 
-use crate::common::Kind;
 use crate::common::Reference;
+use crate::common::value::Kind;
 
 /// A composable characteristic.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -42,9 +44,6 @@ pub enum Characteristic {
     /// An characteristics that has been accepted in principle and has entered
     /// the settling phase of adoption.
     Provisional {
-        /// The provisional identifier.
-        identifier: Identifier,
-
         /// The common set of elements for any characteristic.
         #[serde(flatten)]
         common: Common,
@@ -52,9 +51,6 @@ pub enum Characteristic {
 
     /// A characteristic that has been adopted.
     Adopted {
-        /// The identifier.
-        identifier: Identifier,
-
         /// The common set of elements for any characteristic.
         #[serde(flatten)]
         common: Common,
@@ -68,9 +64,10 @@ impl Characteristic {
     /// Gets the characteristic's identifier (if one has been assigned).
     pub fn identifier(&self) -> Option<&Identifier> {
         match self {
-            Characteristic::Draft { .. } | Characteristic::Proposed { .. } => None,
-            Characteristic::Provisional { identifier, .. }
-            | Characteristic::Adopted { identifier, .. } => Some(identifier),
+            Characteristic::Draft { common, .. } => common.identifier.as_ref(),
+            Characteristic::Proposed { common }
+            | Characteristic::Provisional { common }
+            | Characteristic::Adopted { common, .. } => Some(&common.identifier),
         }
     }
 
@@ -101,6 +98,16 @@ impl Characteristic {
             Characteristic::Proposed { common }
             | Characteristic::Provisional { common, .. }
             | Characteristic::Adopted { common, .. } => Some(&common.values),
+        }
+    }
+
+    /// Gets the description.
+    pub fn description(&self) -> Option<&str> {
+        match self {
+            Characteristic::Draft { common } => common.description.as_deref(),
+            Characteristic::Proposed { common }
+            | Characteristic::Provisional { common, .. }
+            | Characteristic::Adopted { common, .. } => Some(common.description.as_str()),
         }
     }
 
@@ -145,8 +152,9 @@ mod tests {
     use url::Url;
 
     use super::*;
-    use crate::common::Kind;
     use crate::common::Reference;
+    use crate::common::value::Kind;
+    use crate::text::Sentence;
 
     static RFC_LINK: LazyLock<Link> = LazyLock::new(|| {
         "https://github.com/stjudecloud/ecc/issues/1"
@@ -156,6 +164,21 @@ mod tests {
 
     #[test]
     fn features() {
+        let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
+
+        let values = Kind::Binary {
+            description: crate::common::value::kind::binary::Description {
+                r#true: field::Description {
+                    summary: "Foo".parse::<Sentence>().unwrap(),
+                    details: "Bar".parse::<Sentence>().unwrap(),
+                },
+                r#false: field::Description {
+                    summary: "Baz".parse::<Sentence>().unwrap(),
+                    details: "Quux".parse::<Sentence>().unwrap(),
+                },
+            },
+        };
+
         //=======//
         // Draft //
         //=======//
@@ -163,23 +186,32 @@ mod tests {
         let draft = Characteristic::Draft {
             common: OptionalCommon {
                 name: Some(String::from("A Characteristic Name")),
+                identifier: None,
                 rfc: Some(RFC_LINK.clone()),
-                values: Some(Kind::Binary),
+                values: Some(values.clone()),
+                description: Some(String::from("A description")),
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
+                    authors: String::from("Jane Smith"),
+                    context: "Some context about the manuscript"
+                        .parse::<Sentence>()
+                        .unwrap(),
                     url: "https://nature.org/the-discovery-of-foo-bar"
                         .parse::<Url>()
                         .unwrap(),
+                    highlighted: false,
                 })),
             },
         };
+
         assert!(draft.identifier().is_none());
         assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             draft.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
-        assert_eq!(draft.values().unwrap(), &Kind::Binary);
+        assert_eq!(draft.description().unwrap(), "A description");
+        assert_eq!(draft.values().unwrap(), &values);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(draft.adoption_date().is_none());
 
@@ -190,23 +222,32 @@ mod tests {
         let proposed = Characteristic::Proposed {
             common: Common {
                 name: String::from("A Characteristic Name"),
+                identifier: identifier.clone(),
                 rfc: RFC_LINK.clone(),
-                values: Kind::Binary,
+                values: values.clone(),
+                description: String::from("A description"),
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
+                    authors: String::from("Jane Smith"),
+                    context: "Some context about the manuscript"
+                        .parse::<Sentence>()
+                        .unwrap(),
                     url: "https://nature.org/the-discovery-of-foo-bar"
                         .parse::<Url>()
                         .unwrap(),
+                    highlighted: false,
                 })),
             },
         };
-        assert!(proposed.identifier().is_none());
+
+        assert_eq!(proposed.identifier().unwrap(), &identifier);
         assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             proposed.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
-        assert_eq!(draft.values().unwrap(), &Kind::Binary);
+        assert_eq!(draft.description().unwrap(), "A description");
+        assert_eq!(draft.values().unwrap(), &values);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(proposed.adoption_date().is_none());
 
@@ -214,28 +255,35 @@ mod tests {
         // Provisional //
         //=============//
 
-        let identifier = "ECC-MORPH-000001".parse::<Identifier>().unwrap();
         let provisional = Characteristic::Provisional {
-            identifier: identifier.clone(),
             common: Common {
                 name: String::from("A Characteristic Name"),
+                identifier: identifier.clone(),
                 rfc: RFC_LINK.clone(),
-                values: Kind::Binary,
+                values: values.clone(),
+                description: String::from("A description"),
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
+                    authors: String::from("Jane Smith"),
+                    context: "Some context about the manuscript"
+                        .parse::<Sentence>()
+                        .unwrap(),
                     url: "https://nature.org/the-discovery-of-foo-bar"
                         .parse::<Url>()
                         .unwrap(),
+                    highlighted: false,
                 })),
             },
         };
-        assert!(provisional.identifier().is_some());
+
+        assert_eq!(proposed.identifier().unwrap(), &identifier);
         assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             provisional.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
-        assert_eq!(draft.values().unwrap(), &Kind::Binary);
+        assert_eq!(draft.description().unwrap(), "A description");
+        assert_eq!(draft.values().unwrap(), &values);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(provisional.adoption_date().is_none());
 
@@ -243,29 +291,36 @@ mod tests {
         // Adopted //
         //=========//
 
-        let identifier = "ECC-MOLEC-000001".parse::<Identifier>().unwrap();
         let adopted = Characteristic::Adopted {
-            identifier: identifier.clone(),
             common: Common {
                 name: String::from("A Characteristic Name"),
+                identifier: identifier.clone(),
                 rfc: RFC_LINK.clone(),
-                values: Kind::Binary,
+                values: values.clone(),
+                description: String::from("A description"),
                 references: Some(NonEmpty::new(Reference::Manuscript {
                     title: String::from("The Discovery of Foo Bar"),
+                    authors: String::from("Jane Smith"),
+                    context: "Some context about the manuscript"
+                        .parse::<Sentence>()
+                        .unwrap(),
                     url: "https://nature.org/the-discovery-of-foo-bar"
                         .parse::<Url>()
                         .unwrap(),
+                    highlighted: false,
                 })),
             },
             adoption_date: Utc::now(),
         };
-        assert_eq!(adopted.identifier(), Some(&identifier));
+
+        assert_eq!(proposed.identifier().unwrap(), &identifier);
         assert_eq!(draft.name().unwrap(), "A Characteristic Name");
         assert_eq!(
             adopted.rfc().unwrap().as_str(),
             "https://github.com/stjudecloud/ecc/issues/1"
         );
-        assert_eq!(draft.values().unwrap(), &Kind::Binary);
+        assert_eq!(draft.description().unwrap(), "A description");
+        assert_eq!(draft.values().unwrap(), &values);
         assert_eq!(draft.references().unwrap().count(), 1);
         assert!(adopted.adoption_date().is_some());
     }

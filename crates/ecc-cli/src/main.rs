@@ -19,10 +19,10 @@ pub struct Args {
 /// The command to run.
 #[derive(Subcommand)]
 pub enum Command {
-    /// Subcommands related to build and maintaining composable characteristics.
+    /// Build and maintain composable characteristics.
     Ecc(ecc::Args),
 
-    /// Subcommands related to build and maintaining ontologies.
+    /// Build and maintain ontologies.
     Ontology(ontology::Args),
 }
 

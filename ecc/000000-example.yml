@@ -1,0 +1,49 @@
+state: proposed
+name: An Example ECC
+identifier: ECC-MORPH-000001
+rfc: https://github.com/stjudecloud/ecc/issues/1
+description: |
+  # Overview
+
+  Here is the overview of the ECC. It can be formatted in Markdown and use any
+  of the facilities that Markdown provides, such as tables, bulleted lists, and
+  headings. Please see [this guide](https://www.markdownguide.org/) on how to
+  use Markdown.
+
+  ## Subsection
+
+  Note that subsections can also be used.
+values:
+  kind: binary
+  description:
+    "true":
+      summary: Here is a summary for the 'true' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+    "false":
+      summary: Here is a summary for the 'false' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+references:
+  - kind: manuscript
+    title: The foo bar baz discovered!
+    authors: C. McLeod, S. Sandor, M. Adetunji, V. L.  Nguyen, M. Rusch*
+    context: This manuscript introduces the foo bar baz event.
+    url: https://pubmed.org/foo-bar-baz
+    highlighted: true
+  - kind: preprint
+    title: The so called 'foo bar baz' paradox—revisited.
+    authors: C. McLeod, S. Sandor, M. Adetunji, V. L.  Nguyen, M. Rusch*
+    context: |
+      This manuscript introduces evidence that foo bar baz was a hoax!
+
+      Ironically, it is published by the same authors that introduced the
+      concept. Curious...
+    url: https://pubmed.org/foo-bar-baz-revisited
+    highlighted: true
