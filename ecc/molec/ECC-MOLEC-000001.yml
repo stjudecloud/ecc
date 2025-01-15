@@ -28,43 +28,43 @@ references:
   - kind: manuscript
     title: Inhibition of PRC2 activity by a gain-of-function H3 mutation found in pediatric glioblastoma
     authors: Peter W Lewis, Manuel M Müller, Matthew S Koletsky, Francisco Cordero, Shu Lin, Laura A Banaszynski, Benjamin A Garcia, Tom W Muir, Oren J Becher, C David Allis
-    context: 
+    context: The paper highlights that the **K27M mutation** in histone H3 genes (**H3F3A** and **HIST1H3B**) defines **DIPGs** by reducing H3K27 trimethylation (H3K27me3) through inhibition of **PRC2** activity via the EZH2 subunit. It also notes that similar lysine-to-methionine mutations disrupt methylation, indicating a broader mechanism of epigenetic reprogramming in tumor development.
     url: https://pubmed.ncbi.nlm.nih.gov/23539183/
     highlighted: true
   - kind: manuscript
     title: Reduced H3K27me3 and DNA hypomethylation are major drivers of gene expression in K27M mutant pediatric high-grade gliomas
     authors: Sebastian Bender, Yujie Tang, Anders M Lindroth, Volker Hovestadt, David T W Jones, Marcel Kool, Marc Zapatka, Paul A Northcott, Dominik Sturm, Wei Wang, Bernhard Radlwimmer, Jonas W Højfeldt, Nathalène Truffaux, David Castel, Simone Schubert, Marina Ryzhova, Huriye Seker-Cin, Jan Gronych, Pascal David Johann, Sebastian Stark, Jochen Meyer, Till Milde, Martin Schuhmann, Martin Ebinger, Camelia-Maria Monoranu, Anitha Ponnuswami, Spenser Chen, Chris Jones, Olaf Witt, V Peter Collins, Andreas von Deimling, Nada Jabado, Stephanie Puget, Jacques Grill, Kristian Helin, Andrey Korshunov, Peter Lichter, Michelle Monje, Christoph Plass, Yoon-Jae Cho, Stefan M Pfister
-    context: This manuscript introduces the foo bar baz event.
+    context: The paper highlights that the **K27M mutation** in histone variant **H3.3** occurs in ~50% of **pediatric high-grade gliomas (pHGGs)** and defines a distinct subgroup with biological and clinical significance. The mutation causes a global reduction of the repressive mark **H3K27me3** by aberrantly recruiting the **PRC2 complex** and inhibiting its enzymatic component **EZH2**. Chromatin and DNA methylation analyses reveal that reduced H3K27me3 levels and DNA hypomethylation together drive gene activation in **K27M mutant pHGGs**.
     url: https://pubmed.ncbi.nlm.nih.gov/24183680/
     highlighted: true
   - kind: manuscript
     title: The histone H3.3K27M mutation in pediatric glioma reprograms H3K27 methylation and gene expression
-    authors: C. McLeod, S. Sandor, M. Adetunji, V. L.  Nguyen, M. Rusch*
-    context: Kui-Ming Chan 1, Dong Fang, Haiyun Gan, Rintaro Hashizume, Chuanhe Yu, Mark Schroeder, Nalin Gupta, Sabine Mueller, C David James, Robert Jenkins, Jann Sarkaria, Zhiguo Zhang
+    authors: Kui-Ming Chan 1, Dong Fang, Haiyun Gan, Rintaro Hashizume, Chuanhe Yu, Mark Schroeder, Nalin Gupta, Sabine Mueller, C David James, Robert Jenkins, Jann Sarkaria, Zhiguo Zhang
+    context: The paper highlights that the **K27M mutation** in one allele of the **H3F3A** gene, encoding histone variant **H3.3**, occurs in 60% of high-grade pediatric gliomas and is associated with a median survival of ~1 year. The mutation reduces global **H3K27me2** and **H3K27me3** levels but paradoxically increases their presence, along with **Ezh2**, at hundreds of gene loci in tumor cells. This localized enrichment at gene promoters alters the expression of cancer-related genes, demonstrating that the **H3.3K27M mutation** reprograms the epigenetic landscape and drives tumorigenesis.
     url: https://pubmed.ncbi.nlm.nih.gov/23603901/
     highlighted: false
   - kind: manuscript
     title: A sensitive and specific histopathologic prognostic marker for H3F3A K27M mutant pediatric glioblastomas
     authors: Sriram Venneti, Mariarita Santi, Michelle Madden Felicella, Dmitry Yarilin, Joanna J Phillips, Lisa M Sullivan, Daniel Martinez, Arie Perry, Peter W Lewis, Craig B Thompson, Alexander R Judkins
-    context: This manuscript introduces the foo bar baz event.
+    context: The paper highlights that the **K27M mutation** in the **H3F3A** gene, encoding histone variant **H3.3**, occurs in ~30% of pediatric glioblastomas (GBM) and ~80% of diffuse intrinsic pontine gliomas (DIPG), leading to a global reduction in **H3K27me3**. The study evaluated biomarkers for detecting these tumors, demonstrating that immunohistochemistry targeting the **H3.3 K27M mutation** showed 100% sensitivity and specificity, outperforming global H3K27me3 reduction as a diagnostic biomarker. Tumors positive for **H3.3 K27M** were associated with significantly poorer prognosis, establishing immunohistochemical detection as a reliable method to identify a high-risk subset of pediatric GBM.
     url: https://pubmed.ncbi.nlm.nih.gov/25200322/ 
     highlighted: false
   - kind: manuscript
     title: H3K27M mutant glioma Disease definition and biological underpinnings
     authors: Amanda M Saratsis 1, Truman Knowles 2, Antonela Petrovic 3, Javad Nazarian
-    context: This manuscript introduces the foo bar baz event.
+    context: The paper highlights that **high-grade glioma (HGG)** is a leading cause of cancer deaths in children and the most common primary CNS tumor in adults, with pediatric and adult forms being molecularly distinct but sharing certain events like the **H3K27M mutation**. This somatic missense mutation, found in **H3F3A (H3.3)** or **HIST1H3B (H3.1)**, occurs in up to 80% of pediatric diffuse midline gliomas and 60% of adult diffuse gliomas. The **H3K27M mutation** is linked to poorer survival and therapy response compared to **H3 wild-type tumors**. The paper reviews the clinical features and biological mechanisms of H3K27M mutant gliomas, providing a foundation for advancing research and treatment strategies for this aggressive disease.
     url: https://pubmed.ncbi.nlm.nih.gov/37818718/
     highlighted: false     
   - kind: manuscript
     title: Clinical, radiologic, and genetic characteristics of histone H3 K27M-mutant diffuse midline gliomas in adults
     authors: Jessica D Schulte, Robin A Buerki, Sarah Lapointe, Annette M Molinaro, Yalan Zhang, Javier E Villanueva-Meyer, Arie Perry, Joanna J Phillips, Tarik Tihan, Andrew W Bollen, Melike Pekmezci, Nicholas Butowski, Nancy Ann Oberheim Bush, Jennie W Taylor, Susan M Chang, Philip Theodosopoulos, Manish K Aghi, Shawn L Hervey-Jumper, Mitchel S Berger, David A Solomon, Jennifer L Clarke
-    context: 
+    context: The paper highlights that **Diffuse midline glioma (DMG), H3 K27M-mutant** is a tumor entity identified in the 2016 WHO classification, characterized by a **K27M mutation** in histone variants **H3.3** or **H3.1**. While this tumor is associated with poor prognosis in children, clinical data in adults are limited. The study collected data on 60 adult patients with **H3 K27M-mutant DMG**, finding tumors in various midline structures like the thalamus, spinal cord, and brainstem. **Genomic profiling** showed mutations exclusively in **H3F3A**, with frequent mutations in **TP53**, **PPM1D**, and others. The overall survival for adults was **27.6 months**, longer than in pediatric cases and **IDH-wildtype glioblastoma**. These findings suggest that H3 K27M-mutant DMG is a heterogeneous disease, with distinct outcomes and molecular profiles in adults compared to children.
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/
     highlighted: false
   - kind: manuscript
     title: H3 K27M-altered glioma and diffuse intrinsic pontine glioma: Semi-systematic review of treatment landscape and future directions
     authors: Martin van den Bent, Amanda M Saratsis, Marjolein Geurts, Enrico Franceschi
-    context: 
+    context: The paper highlights that **H3 K27M-mutant diffuse glioma** is a recently identified, highly aggressive brain tumor classified as a **grade IV glioma** by the **WHO** since 2016, associated with poor prognosis. Despite its recognition as a key diagnostic and prognostic marker, **radiation therapy** remains the sole standard of care, with no effective systemic treatments available. The review discusses treatments for **diffuse midline glioma** and **diffuse intrinsic pontine glioma (DIPG)** before the identification of the H3 K27M mutation, the current standard of care for **H3 K27M-mutant** gliomas, and **ongoing clinical trials**. Forty-one clinical trials, including those evaluating **H3 K27M vaccination**, **CAR T-cell therapy**, and **small molecule inhibitors**, are currently underway, highlighting the need for further evaluation of novel therapies for this underserved patient population.
     url: https://pubmed.ncbi.nlm.nih.gov/38102230/
     highlighted: false
     
