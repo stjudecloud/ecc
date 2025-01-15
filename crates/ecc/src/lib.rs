@@ -133,7 +133,7 @@ impl Characteristic {
         }
     }
 
-    /// Gets the adoption date (if it the charactertistic has been adopted).
+    /// Gets the adoption date (if it the characteristic has been adopted).
     pub fn adoption_date(&self) -> Option<&DateTime<Utc>> {
         match self {
             Characteristic::Draft { .. }
