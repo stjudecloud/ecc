@@ -8,7 +8,7 @@
 
 To bootstrap a development environment, please use the following commands.
 
-Foo bar.
+Foo bar baz.
 
 ```bash
 # Clone the repository
