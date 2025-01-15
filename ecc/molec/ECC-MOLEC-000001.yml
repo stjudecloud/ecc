@@ -1,0 +1,70 @@
+state: proposed
+name: H3 K27M Mutation
+identifier: ECC-MOLEC-000001
+rfc: https://github.com/stjudecloud/ecc/issues/8
+description: |
+  H3 K27M refers to a specific mutation in the histone H3 protein, where lysine at position 27 is replaced by methionine. 
+  This mutation is primarily associated with diffuse midline gliomas (DMGs), a category of highly aggressive brain tumors that predominantly affect children but can also occur in adults. 
+  The mutation is linked to poor prognosis, with median overall survival ranging from 10.1 to 14.4 months post-diagnosis.[PMC7739048](https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/), [38102230](https://pubmed.ncbi.nlm.nih.gov/38102230/)
+
+values:
+  kind: binary
+  description:
+    "true":
+      summary: Here is a summary for the 'true' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+    "false":
+      summary: Here is a summary for the 'false' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+references:
+  - kind: manuscript
+    title: Inhibition of PRC2 activity by a gain-of-function H3 mutation found in pediatric glioblastoma
+    authors: Peter W Lewis, Manuel M Müller, Matthew S Koletsky, Francisco Cordero, Shu Lin, Laura A Banaszynski, Benjamin A Garcia, Tom W Muir, Oren J Becher, C David Allis
+    context: 
+    url: https://pubmed.ncbi.nlm.nih.gov/23539183/
+    highlighted: true
+  - kind: manuscript
+    title: Reduced H3K27me3 and DNA hypomethylation are major drivers of gene expression in K27M mutant pediatric high-grade gliomas
+    authors: Sebastian Bender, Yujie Tang, Anders M Lindroth, Volker Hovestadt, David T W Jones, Marcel Kool, Marc Zapatka, Paul A Northcott, Dominik Sturm, Wei Wang, Bernhard Radlwimmer, Jonas W Højfeldt, Nathalène Truffaux, David Castel, Simone Schubert, Marina Ryzhova, Huriye Seker-Cin, Jan Gronych, Pascal David Johann, Sebastian Stark, Jochen Meyer, Till Milde, Martin Schuhmann, Martin Ebinger, Camelia-Maria Monoranu, Anitha Ponnuswami, Spenser Chen, Chris Jones, Olaf Witt, V Peter Collins, Andreas von Deimling, Nada Jabado, Stephanie Puget, Jacques Grill, Kristian Helin, Andrey Korshunov, Peter Lichter, Michelle Monje, Christoph Plass, Yoon-Jae Cho, Stefan M Pfister
+    context: This manuscript introduces the foo bar baz event.
+    url: https://pubmed.ncbi.nlm.nih.gov/24183680/
+    highlighted: true
+  - kind: manuscript
+    title: The histone H3.3K27M mutation in pediatric glioma reprograms H3K27 methylation and gene expression
+    authors: C. McLeod, S. Sandor, M. Adetunji, V. L.  Nguyen, M. Rusch*
+    context: Kui-Ming Chan 1, Dong Fang, Haiyun Gan, Rintaro Hashizume, Chuanhe Yu, Mark Schroeder, Nalin Gupta, Sabine Mueller, C David James, Robert Jenkins, Jann Sarkaria, Zhiguo Zhang
+    url: https://pubmed.ncbi.nlm.nih.gov/23603901/
+    highlighted: false
+  - kind: manuscript
+    title: A sensitive and specific histopathologic prognostic marker for H3F3A K27M mutant pediatric glioblastomas
+    authors: Sriram Venneti, Mariarita Santi, Michelle Madden Felicella, Dmitry Yarilin, Joanna J Phillips, Lisa M Sullivan, Daniel Martinez, Arie Perry, Peter W Lewis, Craig B Thompson, Alexander R Judkins
+    context: This manuscript introduces the foo bar baz event.
+    url: https://pubmed.ncbi.nlm.nih.gov/25200322/ 
+    highlighted: false
+  - kind: manuscript
+    title: H3K27M mutant glioma Disease definition and biological underpinnings
+    authors: Amanda M Saratsis 1, Truman Knowles 2, Antonela Petrovic 3, Javad Nazarian
+    context: This manuscript introduces the foo bar baz event.
+    url: https://pubmed.ncbi.nlm.nih.gov/37818718/
+    highlighted: false     
+  - kind: manuscript
+    title: Clinical, radiologic, and genetic characteristics of histone H3 K27M-mutant diffuse midline gliomas in adults
+    authors: Jessica D Schulte, Robin A Buerki, Sarah Lapointe, Annette M Molinaro, Yalan Zhang, Javier E Villanueva-Meyer, Arie Perry, Joanna J Phillips, Tarik Tihan, Andrew W Bollen, Melike Pekmezci, Nicholas Butowski, Nancy Ann Oberheim Bush, Jennie W Taylor, Susan M Chang, Philip Theodosopoulos, Manish K Aghi, Shawn L Hervey-Jumper, Mitchel S Berger, David A Solomon, Jennifer L Clarke
+    context: 
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/
+    highlighted: false
+  - kind: manuscript
+    title: H3 K27M-altered glioma and diffuse intrinsic pontine glioma: Semi-systematic review of treatment landscape and future directions
+    authors: Martin van den Bent, Amanda M Saratsis, Marjolein Geurts, Enrico Franceschi
+    context: 
+    url: https://pubmed.ncbi.nlm.nih.gov/38102230/
+    highlighted: false
+    
