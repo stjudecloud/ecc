@@ -18,4 +18,4 @@ jobs:
       - name: Update Rust
         run: rustup update stable && rustup default stable
       - run: cargo install --path crates/ecc-cli
-      - run: ecc-cli ecc check
+      - run: ecc-cli check ecc
