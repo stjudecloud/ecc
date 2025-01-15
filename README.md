@@ -8,6 +8,8 @@
 
 To bootstrap a development environment, please use the following commands.
 
+Foo bar.
+
 ```bash
 # Clone the repository
 git clone git@github.com:stjudecloud/ecc.git
