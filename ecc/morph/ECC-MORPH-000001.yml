@@ -4,14 +4,9 @@ identifier: ECC-MORPH-000001
 rfc: https://github.com/stjudecloud/ecc/issues/7
 assignment: morphological
 description: |
-    Judah Folkman first discovered the concept of rapid blood vessel growth in 1971, as detailed in his publication in the *New England Journal of Medicine* (NEJM), referenced [here](https://pubmed.ncbi.nlm.nih.gov/4938153/). 
-    His work laid the foundation for further research into angiogenesis, the process of forming new blood vessels. 
+  In 1971, Judah Folkman introduced the groundbreaking concept of rapid blood vessel growth, or angiogenesis, in his seminal publication in the *New England Journal of Medicine* (NEJM) [here](https://pubmed.ncbi.nlm.nih.gov/4938153/). His discovery revolutionized the understanding of vascular biology and provided the foundation for subsequent research into the process of forming new blood vessels, a crucial mechanism in both health and disease.
 
-evaluation: |
-  - "Immunohistochemistry (IHC) of angiogenesis-related markers like CD34, VEGF, FVIII-RA, CD31, Ki-67."
-  - "H&E staining"
-  - qPCR to measure expression levels of angiopoietins and/or VEGF, https://pubmed.ncbi.nlm.nih.gov/10669954/, https://www.nature.com/articles/3780177
-
+  Several techniques are employed to evaluate angiogenesis and its related processes. These include immunohistochemistry (IHC) to analyze angiogenesis-related markers such as CD34, VEGF, FVIII-RA, CD31, and Ki-67, which are important for understanding the mechanisms of blood vessel formation and proliferation. Hematoxylin and Eosin (H&E) staining is also commonly used to assess tissue structure and angiogenesis by staining cell and tissue components. Additionally, qPCR (Quantitative Polymerase Chain Reaction) is utilized to quantify angiogenesis-related gene expression, particularly focusing on angiopoietins and VEGF. Relevant studies on these methods can be found in sources like [PubMed](https://pubmed.ncbi.nlm.nih.gov/10669954/) and [Nature](https://www.nature.com/articles/3780177).
 values:
   kind: binary
   description:
