@@ -1,0 +1,59 @@
+state: proposed
+name: Vascular Proliferation
+identifier: ECC-MORPH-000001
+rfc: https://github.com/stjudecloud/ecc/issues/7
+assignment: morphological
+description: |
+    Judah Folkman first discovered the concept of rapid blood vessel growth in 1971, as detailed in his publication in the *New England Journal of Medicine* (NEJM), referenced [here](https://pubmed.ncbi.nlm.nih.gov/4938153/). 
+    His work laid the foundation for further research into angiogenesis, the process of forming new blood vessels. 
+
+evaluation: |
+  - "Immunohistochemistry (IHC) of angiogenesis-related markers like CD34, VEGF, FVIII-RA, CD31, Ki-67."
+  - "H&E staining"
+  - qPCR to measure expression levels of angiopoietins and/or VEGF, https://pubmed.ncbi.nlm.nih.gov/10669954/, https://www.nature.com/articles/3780177
+
+values:
+  kind: binary
+  description:
+    "true":
+      summary: Here is a summary for the 'true' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+    "false":
+      summary: Here is a summary for the 'false' value.
+      details: |
+        Here is a much longer description.
+
+        This description is spread across multiple lines. It can be in paragraph
+        form and should be hardwrapped at 88 characters.
+references:
+  - kind: manuscript
+    title: Vascular smooth muscle hyperplasia underlies the formation of glomeruloid vascular structures of glioblastoma multiforme
+    authors: 
+    context:
+    url: https://pubmed.ncbi.nlm.nih.gov/1381413/
+    highlighted: true
+  - kind: manuscript
+    title: Proliferative potential of vascular components in human glioblastoma multiforme
+    authors:  
+    context:
+    url: https://pubmed.ncbi.nlm.nih.gov/3039783/
+    highlighted: true
+  - kind: manuscript
+    title: Early and extensive contribution of pericytes/vascular smooth muscle cells to microvascular proliferation in glioblastoma multiforme: an immuno-light and immuno-electron microscopic study
+    authors:  
+    context:
+    url: https://pubmed.ncbi.nlm.nih.gov/7745429/
+  - kind: manuscript
+    title: Genetic modulation of hypoxia induced gene expression and angiogenesis: relevance to brain tumors
+    authors: 
+    context:
+    url: https://pubmed.ncbi.nlm.nih.gov/12456339/
+  - kind: manuscript
+    title: Angiogenesis and expression of PDGF-C, VEGF, CD105 and HIF-1α in human glioblastoma
+    authors: 
+    context:
+    url: "https://pubmed.ncbi.nlm.nih.gov/24612214/"
