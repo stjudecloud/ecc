@@ -1,0 +1,15 @@
+################################################
+# This is where corrections to source files go #
+################################################
+
+[default.extend-identifiers]
+# these identifiers are used during testing specifically for catching
+# incorrectly cased words and should be ignored.
+baR = "baR"
+bAZ = "bAZ"
+
+##############################################
+# This is where corrections to YAML files go #
+##############################################
+
+[default.extend-words]

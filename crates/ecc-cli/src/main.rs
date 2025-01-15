@@ -7,8 +7,8 @@ use clap::Subcommand;
 pub mod ecc;
 pub mod ontology;
 
-/// A tool for building and deploy the Encyclopedia of Composable Characterstics
-/// (ECC) and associated ontologies.
+/// A tool for building and deploy the Encyclopedia of Composable
+/// Characteristics (ECC) and associated ontologies.
 #[derive(Parser)]
 pub struct Args {
     /// The command to run.
