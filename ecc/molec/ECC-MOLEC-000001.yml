@@ -5,7 +5,7 @@ rfc: https://github.com/stjudecloud/ecc/issues/8
 description: |
   H3 K27M refers to a specific mutation in the histone H3 protein, where lysine at position 27 is replaced by methionine. 
   This mutation is primarily associated with diffuse midline gliomas (DMGs), a category of highly aggressive brain tumors that predominantly affect children but can also occur in adults. 
-  The mutation is linked to poor prognosis, with median overall survival ranging from 10.1 to 14.4 months post-diagnosis.[PMC7739048](https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/), [38102230](https://pubmed.ncbi.nlm.nih.gov/38102230/)
+  The mutation is linked to poor prognosis, with median overall survival ranging from 10 to 14 months post-diagnosis.[PMC7739048](https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/), [38102230](https://pubmed.ncbi.nlm.nih.gov/38102230/)
 
 values:
   kind: binary
