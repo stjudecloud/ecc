@@ -11,8 +11,8 @@ use serde::Serialize;
 
 use crate::Identifier;
 use crate::common::Common;
-use crate::common::Kind;
 use crate::common::Reference;
+use crate::common::value;
 use crate::rfc;
 
 /// An "option common" feature set.
@@ -39,7 +39,7 @@ pub struct OptionalCommon {
     pub description: Option<String>,
 
     /// The permissible values that the characteristic takes.
-    pub values: Option<Kind>,
+    pub values: Option<value::Kind>,
 
     /// An optional list of publications.
     pub references: Option<NonEmpty<Reference>>,

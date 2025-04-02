@@ -171,15 +171,21 @@ mod tests {
         let err = "https://github.com/stjudecloud/ecc/issues/"
             .parse::<Link>()
             .unwrap_err();
-        assert_eq!(err, ParseError::Invalid {
-            value: String::from("https://github.com/stjudecloud/ecc/issues/")
-        });
+        assert_eq!(
+            err,
+            ParseError::Invalid {
+                value: String::from("https://github.com/stjudecloud/ecc/issues/")
+            }
+        );
 
         let err = "https://github.com/stjudecloud/another-repo/issues/1"
             .parse::<Link>()
             .unwrap_err();
-        assert_eq!(err, ParseError::Invalid {
-            value: String::from("https://github.com/stjudecloud/another-repo/issues/1")
-        });
+        assert_eq!(
+            err,
+            ParseError::Invalid {
+                value: String::from("https://github.com/stjudecloud/another-repo/issues/1")
+            }
+        );
     }
 }
