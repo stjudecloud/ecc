@@ -5,7 +5,6 @@ use serde::Deserialize;
 use serde::Serialize;
 
 use crate::Identifier;
-use crate::common::value::Kind;
 use crate::rfc;
 
 mod optional;
@@ -34,7 +33,7 @@ pub struct Common {
     pub description: String,
 
     /// The permissible values that the characteristic takes.
-    pub values: Kind,
+    pub values: value::Kind,
 
     /// An optional list of publications.
     pub references: Option<NonEmpty<Reference>>,
