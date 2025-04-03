@@ -325,11 +325,14 @@ mod tests {
     fn case_validation() {
         let (name, parts) = "Foo Bar BAZ".parse::<Name>().unwrap().into_parts();
         assert_eq!(name, "Foo Bar BAZ");
-        assert_eq!(parts.collect::<Vec<_>>(), vec![
-            Case::Title(AsciiString::new(String::from("Foo")).unwrap()),
-            Case::Title(AsciiString::new(String::from("Bar")).unwrap()),
-            Case::Upper(AsciiString::new(String::from("BAZ")).unwrap()),
-        ]);
+        assert_eq!(
+            parts.collect::<Vec<_>>(),
+            vec![
+                Case::Title(AsciiString::new(String::from("Foo")).unwrap()),
+                Case::Title(AsciiString::new(String::from("Bar")).unwrap()),
+                Case::Upper(AsciiString::new(String::from("BAZ")).unwrap()),
+            ]
+        );
 
         let err = "Foo Bèar BAZ".parse::<Name>().unwrap_err();
         assert_eq!(

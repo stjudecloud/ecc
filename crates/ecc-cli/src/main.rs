@@ -4,7 +4,7 @@
 use clap::Parser;
 use clap::Subcommand;
 
-pub mod ecc;
+pub mod check;
 pub mod ontology;
 
 /// A tool for building and deploy the Encyclopedia of Composable
@@ -19,8 +19,8 @@ pub struct Args {
 /// The command to run.
 #[derive(Subcommand)]
 pub enum Command {
-    /// Build and maintain composable characteristics.
-    Ecc(ecc::Args),
+    /// Checks the composable characteristic tree is valid.
+    Check(check::Args),
 
     /// Build and maintain ontologies.
     Ontology(ontology::Args),
@@ -35,7 +35,7 @@ fn main() -> anyhow::Result<()> {
         .init();
 
     match args.command {
-        Command::Ecc(args) => ecc::main(args),
+        Command::Check(args) => check::main(args),
         Command::Ontology(args) => ontology::main(args),
     }
 }
