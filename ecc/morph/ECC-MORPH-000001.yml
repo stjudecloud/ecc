@@ -1,0 +1,54 @@
+state: proposed
+name: Vascular Proliferation
+identifier: ECC-MORPH-000001
+rfc: https://github.com/stjudecloud/ecc/issues/7
+assignment: morphological
+description: |
+  In 1971, Judah Folkman introduced the groundbreaking concept of rapid blood vessel growth, or angiogenesis, in his seminal publication in the *New England Journal of Medicine* (NEJM) [here](https://pubmed.ncbi.nlm.nih.gov/4938153/). His discovery revolutionized the understanding of vascular biology and provided the foundation for subsequent research into the process of forming new blood vessels, a crucial mechanism in both health and disease.
+
+  Several techniques are employed to evaluate angiogenesis and its related processes. These include immunohistochemistry (IHC) to analyze angiogenesis-related markers such as CD34, VEGF, FVIII-RA, CD31, and Ki-67, which are important for understanding the mechanisms of blood vessel formation and proliferation. Hematoxylin and Eosin (H&E) staining is also commonly used to assess tissue structure and angiogenesis by staining cell and tissue components. Additionally, qPCR (Quantitative Polymerase Chain Reaction) is utilized to quantify angiogenesis-related gene expression, particularly focusing on angiopoietins and VEGF. Relevant studies on these methods can be found in sources like [PubMed](https://pubmed.ncbi.nlm.nih.gov/10669954/) and [Nature](https://www.nature.com/articles/3780177).
+values:
+  kind: binary
+  description:
+    "true":
+      summary: Vascular Proliferation is observed.
+      details: |
+        The histologic section reveals prominent vascular proliferation characterized by an increased density of small, thin-walled capillaries dispersed throughout the tissue. The newly formed vessels are lined by plump endothelial cells without significant atypia and are organized in a loosely woven pattern suggestive of active angiogenesis. There may be no evidence of necrosis or hemorrhage, and the proliferation appears to be reactive rather than neoplastic in nature. Immunohistochemical staining for CD34 highlights the expanded vascular network, and Ki-67 demonstrates low proliferative activity within the endothelial cells, supporting a benign process. These findings are consistent with a positive observation of vascular proliferation, likely representing a physiologic or reparative response.
+
+    "false":
+      summary: Vascular Proliferation is not observed.
+      details: |
+        The density and distribution of blood vessels appear within normal limits, with no increase in capillary formation or abnormal vascular architecture observed. Endothelial cells lining the vessels are unremarkable, lacking hyperplasia, multilayering, or cytologic atypia. There is no evidence of neovascularization, and immunohistochemical staining for CD34 reveals a normal vascular pattern without expansion or irregularity. These findings indicate the absence of active angiogenesis or abnormal vascular activity within the sampled tissue.
+references:
+  - kind: manuscript
+    title: Vascular smooth muscle hyperplasia underlies the formation of glomeruloid vascular structures of glioblastoma multiforme
+    authors: Haddad SF, Moore SA, Schelper RL, Goeken JA.
+    context: |
+      A study of seven glioblastomas with glomeruloid vascular structures suggests that these formations result primarily from smooth muscle hyperplasia. Endothelial cells of both normal and glomeruloid vessels stained positively for UEA-1 and factor VIII-related antigen (fVIII/RAg), while smooth muscle cells stained with muscle-specific actin antibodies (MSA and SMSA). The lack of MSA/SMSA staining in the endothelial cells of the glomeruloid structures indicates that smooth muscle cells, rather than endothelial cells, are primarily involved in the vascular proliferation seen in glioblastoma.
+    url: https://pubmed.ncbi.nlm.nih.gov/1381413/
+    highlighted: true
+  - kind: manuscript
+    title: Proliferative potential of vascular components in human glioblastoma multiforme
+    authors: Nagashima T, Hoshino T, Cho KG.
+    context: |
+      In a study of 16 glioblastoma multiforme patients, 5-bromo-deoxyuridine (BrdU) was used to label S-phase cells in tumor tissue. The BrdU labeling index (LI) for vascular components was significantly higher in glioblastomas than in normal brain tissue, but lower than the tumor cells themselves. Primary tumors had a higher vascular BrdU LI (4.5%) compared to recurrent tumors (2.7%), though the difference was not statistically significant. Vascular labeling was inconsistent, occurring mainly in glomerular-shaped vessels, with only 20% showing labeled cells. These findings suggest that vascular proliferation in glioblastomas may slow down or cease at a certain stage and is unlikely to be due to neoplastic transformation.
+    url: https://pubmed.ncbi.nlm.nih.gov/3039783/
+    highlighted: true
+  - kind: manuscript
+    title: Early and extensive contribution of pericytes/vascular smooth muscle cells to microvascular proliferation in glioblastoma multiforme, an immuno-light and immuno-electron microscopic study
+    authors: Wesseling P, Schlingemann RO, Rietveld FJ, Link M, Burger PC, Ruiter DJ
+    context: |
+      Recent studies of glioblastoma multiforme (GBM) microvascular proliferation (MVP) suggest that pericytes and vascular smooth muscle cells (VSMC), not just endothelial cells (EC), play a major role. Immunohistochemical analysis revealed two distinct cell types—EC and pericytes/VSMC—with no transitional forms. Pericytes/VSMC were found to contribute extensively to MVP, particularly in early stages of tumor capillary formation, highlighting their essential role in GBM angiogenesis.
+    url: https://pubmed.ncbi.nlm.nih.gov/7745429/
+  - kind: manuscript
+    title: Genetic modulation of hypoxia induced gene expression and angiogenesis, relevance to brain tumors
+    authors: Brat DJ, Kaur B, Van Meir EG
+    context: |
+      Angiogenesis, crucial for the growth of infiltrative astrocytomas, manifests as "microvascular hyperplasia" in glioblastoma multiforme, the most aggressive form. This abnormal vascular proliferation, often linked to necrosis, is driven by hypoxic conditions within the tumor and genetic alterations. Hypoxia upregulates pro-angiogenic factors like VEGF through the HIF-1 pathway, which is influenced by genetic changes in oncogenes and tumor suppressor genes such as PTEN, TP53, and EGFR. These genetic alterations also impact the expression of other angiogenic factors, further promoting tumor angiogenesis.
+    url: https://pubmed.ncbi.nlm.nih.gov/12456339/
+  - kind: manuscript
+    title: Angiogenesis and expression of PDGF-C, VEGF, CD105 and HIF-1α in human glioblastoma
+    authors: Clara CA, Marie SK, de Almeida JR, Wakamatsu A, Oba-Shinjo SM, Uno M, Neville M, Rosemberg S
+    context: |
+      This study analyzed the expression of PDGF-C, VEGF, and HIF-1α in 208 glioblastoma (GBM) cases to understand their role in angiogenesis and prognosis. The results showed that HIF-1α, VEGF, and PDGF-C were highly expressed in most tumors, with HIF-1α expression correlating with increased vascular density and higher VEGF and PDGF-C levels. A significant correlation was found between VEGF and PDGF-C expression in both tumor cells and blood vessels. Endothelial cells with positive VEGF and PDGF-C expression also showed markers of neoangiogenesis and proliferation. Nuclear staining for VEGF and HIF-1α was linked to poorer survival. The findings support the potential benefit of combined anti-angiogenic therapies for improving GBM treatment outcomes.
+    url: https://pubmed.ncbi.nlm.nih.gov/24612214/
