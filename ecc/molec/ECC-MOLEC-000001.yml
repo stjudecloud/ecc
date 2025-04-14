@@ -3,10 +3,13 @@ name: H3 K27M Mutation
 identifier: ECC-MOLEC-000001
 rfc: https://github.com/stjudecloud/ecc/issues/8
 description: |
-  The H3 K27M mutation is a lysine-to-methionine substitution at position 27 on the histone H3 protein, most commonly occurring in the H3F3A (H3.3) or HIST1H3B/C (H3.1) genes.
+  The H3 K27M mutation is a lysine-to-methionine somatic substitution at position 27 on the histone H3 protein, most commonly occurring in the H3F3A (H3.3) or less frequently in HIST1H3B/C (H3.1) genes.
   This mutation disrupts normal epigenetic regulation by inhibiting the trimethylation of histone H3 at lysine 27 (H3K27me3), leading to widespread changes in gene expression that drive tumorigenesis.
   The H3 K27M mutation is primarily associated with diffuse midline gliomas (DMGs) [22286216](https://pubmed.ncbi.nlm.nih.gov/22286216/), a group of highly aggressive brain tumors that predominantly affect children, though they can also occur in adults.
   This mutation is linked to a poor prognosis, with median overall survival ranging from 10 to 14 months after diagnosis [PMC7739048](https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/), [38102230](https://pubmed.ncbi.nlm.nih.gov/38102230/).
+  Note that the H3-K27M mutation is sometimes also referred to as K28M in annotations that include the initiator methionine in protein numbering. In histone biology literature, the convention is to exclude the initiator methionine [29766298](https://pubmed.ncbi.nlm.nih.gov/29766298/), thus the mutation is commonly described as K27M.
+
+
 values:
   kind: binary
   description:
