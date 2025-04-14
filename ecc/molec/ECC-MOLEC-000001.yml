@@ -59,9 +59,9 @@ references:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7739048/
     highlighted: false
   - kind: manuscript
-    title: H3 K27M-altered glioma and diffuse intrinsic pontine glioma: Semi-systematic review of treatment landscape and future directions
+    title: H3 K27M-altered glioma and diffuse intrinsic pontine glioma Semi-systematic review of treatment landscape and future directions
     authors: Martin van den Bent, Amanda M Saratsis, Marjolein Geurts, Enrico Franceschi
     context: The paper highlights that **H3 K27M-mutant diffuse glioma** is a recently identified, highly aggressive brain tumor classified as a **grade IV glioma** by the **WHO** since 2016, associated with poor prognosis. Despite its recognition as a key diagnostic and prognostic marker, **radiation therapy** remains the sole standard of care, with no effective systemic treatments available. The review discusses treatments for **diffuse midline glioma** and **diffuse intrinsic pontine glioma (DIPG)** before the identification of the H3 K27M mutation, the current standard of care for **H3 K27M-mutant** gliomas, and **ongoing clinical trials**. Forty-one clinical trials, including those evaluating **H3 K27M vaccination**, **CAR T-cell therapy**, and **small molecule inhibitors**, are currently underway, highlighting the need for further evaluation of novel therapies for this underserved patient population.
     url: https://pubmed.ncbi.nlm.nih.gov/38102230/
     highlighted: false
-    
+  
