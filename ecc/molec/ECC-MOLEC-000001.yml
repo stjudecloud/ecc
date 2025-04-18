@@ -21,7 +21,7 @@ values:
     "false":
       summary: The H3 K27M alteration is **not** observed in the associated sample.
       details: |
-        In the absence of the mutation, immunohistochemistry (IHC) with a H3 K27M mutation-specific antibody  shows no nuclear staining in tumor cells, indicating a lack of mutant histone protein expression. 
+        In the absence of the mutation, immunohistochemistry (IHC) with a H3 K27M mutation-specific antibody shows no nuclear staining in tumor cells, indicating a lack of mutant histone protein expression. 
         Because IHC can occasionally yield false-negative results due to factors such as tissue preservation or antigen masking, molecular testing, such Sanger sequencing or next-generation sequencing (NGS), is recommended for confirmation.
         A negative molecular result definitively confirms the absence of the H3 K27M mutation.
 references:
