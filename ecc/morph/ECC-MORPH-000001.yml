@@ -11,12 +11,12 @@ values:
   kind: binary
   description:
     "true":
-      summary: Vascular Proliferation is observed.
+      summary: Vascular Proliferation is observed in the sample.
       details: |
         The histologic section reveals prominent vascular proliferation characterized by an increased density of small, thin-walled capillaries dispersed throughout the tissue. The newly formed vessels are lined by plump endothelial cells without significant atypia and are organized in a loosely woven pattern suggestive of active angiogenesis. There may be no evidence of necrosis or hemorrhage, and the proliferation appears to be reactive rather than neoplastic in nature. Immunohistochemical staining for CD34 highlights the expanded vascular network, and Ki-67 demonstrates low proliferative activity within the endothelial cells, supporting a benign process. These findings are consistent with a positive observation of vascular proliferation, likely representing a physiologic or reparative response.
 
     "false":
-      summary: Vascular Proliferation is not observed.
+      summary: Vascular Proliferation is not observed in the sample.
       details: |
         The density and distribution of blood vessels appear within normal limits, with no increase in capillary formation or abnormal vascular architecture observed. Endothelial cells lining the vessels are unremarkable, lacking hyperplasia, multilayering, or cytologic atypia. There is no evidence of neovascularization, and immunohistochemical staining for CD34 reveals a normal vascular pattern without expansion or irregularity. These findings indicate the absence of active angiogenesis or abnormal vascular activity within the sampled tissue.
 references:
