@@ -19,7 +19,7 @@ values:
         The presence of the H3 K27M mutation can be initially identified by positive nuclear staining in tumor cells using a H3 K27M mutation-specific immunohistochemistry (IHC) antibody, which strongly indicates the presence of the mutant histone protein.
         To confirm the mutation at the genetic level, molecular testing such as Sanger sequencing or next-generation sequencing (NGS) can be performed to detect the lysine-to-methionine substitution at position 27 in the H3F3A or HIST1H3B/C genes.
     "false":
-      summary: H3 K27M mutation is NOT observed from the sample.
+      summary: The H3 K27M alteration is **not** observed in the associated sample.
       details: |
         In the absence of the mutation, immunohistochemistry (IHC) with a H3 K27M mutation-specific antibody  shows no nuclear staining in tumor cells, indicating a lack of mutant histone protein expression. 
         Because IHC can occasionally yield false-negative results due to factors such as tissue preservation or antigen masking, molecular testing such as Sanger sequencing or next-generation sequencing (NGS) — is recommended for confirmation.
