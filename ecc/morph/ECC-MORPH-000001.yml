@@ -13,12 +13,12 @@ values:
     "true":
       summary: Vascular Proliferation is observed in the sample.
       details: |
-        The histologic section reveals prominent vascular proliferation characterized by an increased density of small, thin-walled capillaries dispersed throughout the tissue. The newly formed vessels are lined by plump endothelial cells without significant atypia and are organized in a loosely woven pattern suggestive of active angiogenesis. There may be no evidence of necrosis or hemorrhage, and the proliferation appears to be reactive rather than neoplastic in nature. Immunohistochemical staining for CD34 highlights the expanded vascular network, and Ki-67 demonstrates low proliferative activity within the endothelial cells, supporting a benign process. These findings are consistent with a positive observation of vascular proliferation, likely representing a physiologic or reparative response.
+        The tissue section demonstrates increased vascular proliferation, characterized by a marked rise in the density of small, thin-walled capillaries concentrated in focal areas. The estimated microvessel density (MVD) is approximately 25 vessels per high-power field (HPF), notably exceeding the expected range for this tissue type. The vessels are lined by plump, occasionally multilayered endothelial cells, and some show irregular architecture suggestive of active neovascularization. CD34 immunostaining highlights an expanded and disorganized vascular network. Ki-67 immunohistochemistry reveals increased proliferative activity among endothelial cells, with a proliferation index of approximately 10%, consistent with active angiogenesis. These features indicate a pathologic vascular response, possibly associated with an underlying neoplastic or reparative process.
 
     "false":
       summary: Vascular Proliferation is not observed in the sample.
       details: |
-        The density and distribution of blood vessels appear within normal limits, with no increase in capillary formation or abnormal vascular architecture observed. Endothelial cells lining the vessels are unremarkable, lacking hyperplasia, multilayering, or cytologic atypia. There is no evidence of neovascularization, and immunohistochemical staining for CD34 reveals a normal vascular pattern without expansion or irregularity. These findings indicate the absence of active angiogenesis or abnormal vascular activity within the sampled tissue.
+        The examined tissue section shows no evidence of abnormal vascular proliferation. The vascular density is within normal histologic limits for the tissue type, with an estimated microvessel density (MVD) of approximately 5 vessels per high-power field (HPF), consistent with baseline physiologic vascularization. The vessels display normal morphology, with a uniform distribution and no evidence of capillary sprouting, endothelial cell hyperplasia, or multilayering. Immunohistochemical staining for CD34 outlines a regular vascular pattern without expansion, and Ki-67 staining reveals minimal proliferative activity in endothelial cells (<1%), indicating a low endothelial proliferation index. These findings support the absence of active angiogenesis or pathologic vascular changes.
 references:
   - kind: manuscript
     title: Vascular smooth muscle hyperplasia underlies the formation of glomeruloid vascular structures of glioblastoma multiforme
@@ -41,14 +41,14 @@ references:
       Recent studies of glioblastoma multiforme (GBM) microvascular proliferation (MVP) suggest that pericytes and vascular smooth muscle cells (VSMC), not just endothelial cells (EC), play a major role. Immunohistochemical analysis revealed two distinct cell types—EC and pericytes/VSMC—with no transitional forms. Pericytes/VSMC were found to contribute extensively to MVP, particularly in early stages of tumor capillary formation, highlighting their essential role in GBM angiogenesis.
     url: https://pubmed.ncbi.nlm.nih.gov/7745429/
   - kind: manuscript
-    title: Genetic modulation of hypoxia induced gene expression and angiogenesis, relevance to brain tumors
-    authors: Brat DJ, Kaur B, Van Meir EG
-    context: |
-      Angiogenesis, crucial for the growth of infiltrative astrocytomas, manifests as "microvascular hyperplasia" in glioblastoma multiforme, the most aggressive form. This abnormal vascular proliferation, often linked to necrosis, is driven by hypoxic conditions within the tumor and genetic alterations. Hypoxia upregulates pro-angiogenic factors like VEGF through the HIF-1 pathway, which is influenced by genetic changes in oncogenes and tumor suppressor genes such as PTEN, TP53, and EGFR. These genetic alterations also impact the expression of other angiogenic factors, further promoting tumor angiogenesis.
-    url: https://pubmed.ncbi.nlm.nih.gov/12456339/
-  - kind: manuscript
     title: Angiogenesis and expression of PDGF-C, VEGF, CD105 and HIF-1α in human glioblastoma
     authors: Clara CA, Marie SK, de Almeida JR, Wakamatsu A, Oba-Shinjo SM, Uno M, Neville M, Rosemberg S
     context: |
       This study analyzed the expression of PDGF-C, VEGF, and HIF-1α in 208 glioblastoma (GBM) cases to understand their role in angiogenesis and prognosis. The results showed that HIF-1α, VEGF, and PDGF-C were highly expressed in most tumors, with HIF-1α expression correlating with increased vascular density and higher VEGF and PDGF-C levels. A significant correlation was found between VEGF and PDGF-C expression in both tumor cells and blood vessels. Endothelial cells with positive VEGF and PDGF-C expression also showed markers of neoangiogenesis and proliferation. Nuclear staining for VEGF and HIF-1α was linked to poorer survival. The findings support the potential benefit of combined anti-angiogenic therapies for improving GBM treatment outcomes.
     url: https://pubmed.ncbi.nlm.nih.gov/24612214/
+  - kind: manuscript
+    title: Genetic modulation of hypoxia induced gene expression and angiogenesis, relevance to brain tumors
+    authors: Brat DJ, Kaur B, Van Meir EG
+    context: |
+      Angiogenesis, crucial for the growth of infiltrative astrocytomas, manifests as "microvascular hyperplasia" in glioblastoma multiforme, the most aggressive form. This abnormal vascular proliferation, often linked to necrosis, is driven by hypoxic conditions within the tumor and genetic alterations. Hypoxia upregulates pro-angiogenic factors like VEGF through the HIF-1 pathway, which is influenced by genetic changes in oncogenes and tumor suppressor genes such as PTEN, TP53, and EGFR. These genetic alterations also impact the expression of other angiogenic factors, further promoting tumor angiogenesis.
+    url: https://pubmed.ncbi.nlm.nih.gov/12456339/
